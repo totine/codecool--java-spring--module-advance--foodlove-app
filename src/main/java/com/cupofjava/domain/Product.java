@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 
 
 @Entity
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -17,7 +18,7 @@ public class Product {
     private BigDecimal price;
     private String imageUrl;
     @OneToOne
-    @JoinColumn()
+    @JoinColumn(name = "product_feature_id")
     private ProductFeature productFeature;
 
     public Long getId() {
@@ -50,5 +51,13 @@ public class Product {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public ProductFeature getProductFeature() {
+        return productFeature;
+    }
+
+    public void setProductFeature(ProductFeature productFeature) {
+        this.productFeature = productFeature;
     }
 }

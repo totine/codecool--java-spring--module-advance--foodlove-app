@@ -1,5 +1,11 @@
 package com.cupofjava.domain;
 
+
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +17,9 @@ public class ProductFeature {
     private boolean isVegetarian;
     private boolean isRestaurantBox;
     private boolean isShopProduct;
+    @OneToOne(mappedBy = "productFeature")
+    private Product product;
+
 
 
     public ProductFeature() {
@@ -43,11 +52,22 @@ public class ProductFeature {
         isShopProduct = shopProduct;
     }
 
+//    @GenericGenerator(name = "generator", strategy = "foreign",
+//            parameters = @Parameter(name = "property", value = "product"))
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

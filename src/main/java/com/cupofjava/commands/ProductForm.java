@@ -2,6 +2,8 @@ package com.cupofjava.commands;
 
 //import com.cupofjava.domain.ProductFeature;
 
+import com.cupofjava.domain.ProductFeature;
+
 import java.math.BigDecimal;
 
     public class ProductForm {
@@ -9,7 +11,7 @@ import java.math.BigDecimal;
         private String description;
         private BigDecimal price;
         private String imageUrl;
-//        private ProductFeature productFeature;
+        private ProductFeature productFeature;
 
         public Long getId() {
             return _id;
@@ -42,14 +44,14 @@ import java.math.BigDecimal;
         public void setImageUrl(String imageUrl) {
             this.imageUrl = imageUrl;
         }
-//
-//        public ProductFeature getProductFeature() {
-//            return productFeature;
-//        }
-//
-//        public void setProductFeature(ProductFeature productFeature) {
-//            this.productFeature = productFeature;
-//        }
+
+        public ProductFeature getProductFeature() {
+            return productFeature;
+        }
+
+        public void setProductFeature(ProductFeature productFeature) {
+            this.productFeature = productFeature;
+        }
     }
 
 
