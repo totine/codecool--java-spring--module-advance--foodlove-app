@@ -2,6 +2,7 @@ package com.cupofjava.converters;
 
 import com.cupofjava.commands.ProductForm;
 import com.cupofjava.domain.Product;
+import com.cupofjava.domain.ProductFeature;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -18,6 +19,7 @@ public class ProductFormToProduct implements Converter<ProductForm, Product> {
         product.setDescription(productForm.getDescription());
         product.setPrice(productForm.getPrice());
         product.setImageUrl(productForm.getImageUrl());
+        product.setProductFeature(productForm.getProductFeature());
         return product;
     }
 }

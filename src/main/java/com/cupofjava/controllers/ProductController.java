@@ -42,6 +42,16 @@ public class ProductController {
     @RequestMapping("/product/show/{id}")
     public String getProduct(@PathVariable String id, Model model){
         model.addAttribute("product", productService.getById(Long.valueOf(id)));
+//        System.out.println("id");
+//        try {
+//            System.out.println(productService.getById(Long.valueOf(id)).getProductFeature().isRestaurantBox());
+//
+//        }
+//        catch (NullPointerException dupa){
+//            System.out.println("dupa");
+//        }
+//
+
         return "product/show";
     }
 

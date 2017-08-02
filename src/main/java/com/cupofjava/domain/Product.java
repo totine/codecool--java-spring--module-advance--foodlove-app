@@ -21,6 +21,7 @@ public class Product {
     @JoinColumn(name = "product_feature_id")
     private ProductFeature productFeature;
 
+
     public Long getId() {
         return _id;
     }
