@@ -1,8 +1,8 @@
 package com.cupofjava.controllers;
 
-import com.cupofjava.commands.ProductForm;
-import com.cupofjava.converters.ProductToProductForm;
 import com.cupofjava.domain.Product;
+import com.cupofjava.domain.ProductFeature;
+import com.cupofjava.services.ProductFeatureService;
 import com.cupofjava.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,18 +14,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
+
 @Controller
 public class ProductController {
     private ProductService productService;
-    private ProductToProductForm productToProductForm;
-    @Autowired
-    public void setProductToProductForm(ProductToProductForm productToProductForm) {
-        this.productToProductForm = productToProductForm;
-    }
+    private ProductFeatureService productFeatureService;
 
     @Autowired
-    public void setProductService(ProductService productService) {
+    public void setProductService(ProductService productService, ProductFeatureService productFeatureService) {
         this.productService = productService;
+        this.productFeatureService = productFeatureService;
     }
 
     @RequestMapping("/")
@@ -48,26 +46,27 @@ public class ProductController {
     @RequestMapping("product/edit/{id}")
     public String edit(@PathVariable String id, Model model){
         Product product = productService.getById(Long.valueOf(id));
-        ProductForm productForm = productToProductForm.convert(product);
-
-        model.addAttribute("productForm", productForm);
+        model.addAttribute("productForm", product);
         return "product/productform";
     }
 
     @RequestMapping("/product/new")
     public String newProduct(Model model){
-        model.addAttribute("productForm", new ProductForm());
+        model.addAttribute("productForm", new Product());
         return "product/productform";
     }
 
     @RequestMapping(value = "/product", method = RequestMethod.POST)
-    public String saveOrUpdateProduct(@Valid ProductForm productForm, BindingResult bindingResult){
-
+    public String saveOrUpdateProduct(@Valid Product product, ProductFeature productFeature, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "product/productform";
         }
 
-        Product savedProduct = productService.saveOrUpdateProductForm(productForm);
+        ProductFeature savedProductFeature = productFeatureService.saveOrUpdateProductFeature(productFeature);
+        Product savedProduct = productService.saveOrUpdateProduct(product);
+
+        savedProduct.setProductFeature(savedProductFeature);
+        savedProductFeature.setProduct(savedProduct);
 
         return "redirect:/product/show/" + savedProduct.getId();
     }

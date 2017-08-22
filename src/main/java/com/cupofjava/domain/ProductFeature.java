@@ -8,16 +8,11 @@ public class ProductFeature {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private boolean isVegetarian;
-    private boolean isRestaurantBox;
-    private boolean isShopProduct;
-
-
-    public ProductFeature() {
-        this.isVegetarian = false;
-        this.isRestaurantBox = true;
-        this.isShopProduct = false;
-    }
+    private boolean isVegetarian = false;
+    private boolean isRestaurantBox = false;
+    private boolean isShopProduct = true;
+    @OneToOne(mappedBy = "productFeature")
+    private Product product;
 
     public boolean isVegetarian() {
         return isVegetarian;
@@ -43,11 +38,20 @@ public class ProductFeature {
         isShopProduct = shopProduct;
     }
 
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
