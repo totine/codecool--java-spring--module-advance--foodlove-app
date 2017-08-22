@@ -1,18 +1,14 @@
 package com.cupofjava.services;
 
-import com.cupofjava.domain.Product;
 import com.cupofjava.domain.ProductFeature;
 import com.cupofjava.repositories.ProductFeatureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by oskar on 02.08.17.
- */
+
 @Service
 public class ProductFeatureServiceImpl implements ProductFeatureService {
 
@@ -22,7 +18,6 @@ public class ProductFeatureServiceImpl implements ProductFeatureService {
     public ProductFeatureServiceImpl(ProductFeatureRepository productFeatureRepository) {
         this.productFeatureRepository = productFeatureRepository;
     }
-
 
     @Override
     public List<ProductFeature> listAll() {
@@ -40,11 +35,17 @@ public class ProductFeatureServiceImpl implements ProductFeatureService {
     public ProductFeature saveOrUpdate(ProductFeature productFeature) {
         productFeatureRepository.save(productFeature);
         return productFeature;
-
     }
+
+    @Override
+    public ProductFeature saveOrUpdateProductFeature(ProductFeature productFeature) {
+        ProductFeature savedProductFeature = saveOrUpdate(productFeature);
+        System.out.println("Saved Product Feature Id: " + savedProductFeature.getId());
+        return productFeature;
+    }
+
     @Override
     public void delete(Long id) {
         productFeatureRepository.delete(id);
-
     }
 }

@@ -1,10 +1,6 @@
 package com.cupofjava.services;
 
-import com.cupofjava.commands.ProductForm;
-import com.cupofjava.converters.ProductFormToProduct;
 import com.cupofjava.domain.Product;
-import com.cupofjava.domain.ProductFeature;
-import com.cupofjava.repositories.ProductFeatureRepository;
 import com.cupofjava.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,15 +12,12 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
-    private ProductFormToProduct productFormToProduct;
-    private ProductFeatureRepository productFeatureRepository;
+
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, ProductFormToProduct productFormToProduct) {
+    public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.productFormToProduct = productFormToProduct;
     }
-
 
     @Override
     public List<Product> listAll() {
@@ -47,16 +40,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void delete(Long id) {
         productRepository.delete(id);
-
     }
 
     @Override
-    public Product saveOrUpdateProductForm(ProductForm productForm) {
-        ProductFeature productFeature = new ProductFeature();
-        System.out.println(productFeature);
-        productFeatureRepository.save(productFeature);
-        productForm.setProductFeature(productFeature);
-        Product savedProduct = saveOrUpdate(productFormToProduct.convert(productForm));
+    public Product saveOrUpdateProduct(Product product) {
+        Product savedProduct = saveOrUpdate(product);
         System.out.println("Saved Product Id: " + savedProduct.getId());
         return savedProduct;
     }
