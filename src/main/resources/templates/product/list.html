@@ -39,6 +39,23 @@
             </tr>
         </table>
     </div>
+        <div th:if="${not #lists.isEmpty(productsFeatures)}">
+            <h2>Product Feature List</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Pro.Feat. ID</th>
+                    <th>Is vege</th>
+                    <th>Is restaurant box</th>
+                    <th>Is shop product</th>
+                </tr>
+                <tr th:each="productFeature : ${productsFeatures}">
+                    <td th:text="${productFeature.id}"></td>
+                    <td th:text="${productFeature.isVegetarian}"></td>
+                    <td th:text="${productFeature.isRestaurantBox}"></td>
+                    <td th:text="${productFeature.isShopProduct}"></td>
+                </tr>
+            </table>
+        </div>
     <div class="row">
         <div class="col-sm-3">
             <a href="/product/new">New Product</a>

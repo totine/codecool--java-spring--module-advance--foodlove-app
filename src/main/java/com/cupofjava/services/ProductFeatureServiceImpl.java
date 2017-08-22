@@ -22,7 +22,7 @@ public class ProductFeatureServiceImpl implements ProductFeatureService {
     @Override
     public List<ProductFeature> listAll() {
         List<ProductFeature> productFeatures = new ArrayList<>();
-        productFeatureRepository.findAll().forEach(productFeatures::add); //fun with Java 8
+        productFeatureRepository.findAll().forEach(productFeatures::add); //fun with Java 8 Asia to lubi!!
         return productFeatures;
     }
 

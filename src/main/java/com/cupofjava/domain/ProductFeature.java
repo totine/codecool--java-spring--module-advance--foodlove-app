@@ -14,37 +14,36 @@ public class ProductFeature {
     @OneToOne(mappedBy = "productFeature")
     private Product product;
 
-    public boolean isVegetarian() {
-        return isVegetarian;
-    }
-
-    public void setVegetarian(boolean vegetarian) {
-        isVegetarian = vegetarian;
-    }
-
-    public boolean isRestaurantBox() {
-        return isRestaurantBox;
-    }
-
-    public void setRestaurantBox(boolean restaurantBox) {
-        isRestaurantBox = restaurantBox;
-    }
-
-    public boolean isShopProduct() {
-        return isShopProduct;
-    }
-
-    public void setShopProduct(boolean shopProduct) {
-        isShopProduct = shopProduct;
-    }
-
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean getIsVegetarian() {
+        return isVegetarian;
+    }
+
+    public void setIsVegetarian(boolean vegetarian) {
+        isVegetarian = vegetarian;
+    }
+
+    public boolean getIsRestaurantBox() {
+        return isRestaurantBox;
+    }
+
+    public void setIsRestaurantBox(boolean restaurantBox) {
+        isRestaurantBox = restaurantBox;
+    }
+
+    public boolean getIsShopProduct() {
+        return isShopProduct;
+    }
+
+    public void setIsShopProduct(boolean shopProduct) {
+        isShopProduct = shopProduct;
     }
 
     public Product getProduct() {

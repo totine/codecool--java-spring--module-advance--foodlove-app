@@ -34,6 +34,7 @@ public class ProductController {
     @RequestMapping({"/product/list", "/product"})
     public String listProducts(Model model){
         model.addAttribute("products", productService.listAll());
+        model.addAttribute("productsFeatures", productFeatureService.listAll());
         return "product/list";
     }
 
@@ -53,6 +54,7 @@ public class ProductController {
     @RequestMapping("/product/new")
     public String newProduct(Model model){
         model.addAttribute("productForm", new Product());
+        model.addAttribute("productFeatureForm", new ProductFeature());
         return "product/productform";
     }
 
@@ -67,7 +69,7 @@ public class ProductController {
 
         savedProduct.setProductFeature(savedProductFeature);
         savedProductFeature.setProduct(savedProduct);
-
+        System.out.println(savedProductFeature.getIsVegetarian());
         return "redirect:/product/show/" + savedProduct.getId();
     }
 
