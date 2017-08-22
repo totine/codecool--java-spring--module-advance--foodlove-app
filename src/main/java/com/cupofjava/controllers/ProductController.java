@@ -34,6 +34,7 @@ public class ProductController {
     @RequestMapping({"/product/list", "/product"})
     public String listProducts(Model model){
         model.addAttribute("products", productService.listAll());
+        model.addAttribute("productsFeatures", productFeatureService.listAll());
         return "product/list";
     }
 
@@ -67,7 +68,8 @@ public class ProductController {
 
         savedProduct.setProductFeature(savedProductFeature);
         savedProductFeature.setProduct(savedProduct);
-
+        System.out.println(savedProduct.getProductFeature().getId());
+        System.out.println(savedProduct.getProductFeature().getIsRestaurantBox());
         return "redirect:/product/show/" + savedProduct.getId();
     }
 

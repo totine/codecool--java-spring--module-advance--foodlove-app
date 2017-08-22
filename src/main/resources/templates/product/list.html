@@ -25,6 +25,7 @@
 <body>
 
 <h1>FOOD LOVE</h1>
+
 <div class="container">
     <div th:if="${not #lists.isEmpty(products)}">
         <h2>Product List</h2>
@@ -37,6 +38,7 @@
                 <th>List</th>
                 <th>Edit</th>
                 <th>Delete</th>
+                <th>FEATURES</th>
             </tr>
             <tr th:each="product : ${products}">
                 <td><img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${product.id} + '.jpg'" alt="" /></td>
@@ -46,14 +48,28 @@
                 <td><a th:href="${'/product/show/' + product.id}">View</a> </td>
                 <td><a th:href="${'/product/edit/' + product.id}">Edit</a> </td>
                 <td><a th:href="${'/product/delete/' + product.id}">Delete</a> </td>
+                <td>
+                    <div th:if="${not #lists.isEmpty(productsFeatures)}">
+                        <table class="table table-striped">
+                            <tr th:each="feature : ${productsFeatures}">
+                                <td th:text="${feature.id}"></td>
+                                <td th:text="${feature.isVegetarian}"></td>
+                                <td th:text="${feature.isShopProduct}"></td>
+                                <td th:text="${feature.isRestaurantBox}"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
             </tr>
         </table>
     </div>
+
     <div class="row">
         <div class="col-sm-3">
             <a href="/product/new">New Product</a>
         </div>
     </div>
+
 </div>
 
 </body>

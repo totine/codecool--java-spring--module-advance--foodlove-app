@@ -14,7 +14,7 @@ public class ProductFeature {
     @OneToOne(mappedBy = "productFeature")
     private Product product;
 
-    public boolean isVegetarian() {
+    public boolean getIsVegetarian() {
         return isVegetarian;
     }
 
@@ -22,7 +22,7 @@ public class ProductFeature {
         isVegetarian = vegetarian;
     }
 
-    public boolean isRestaurantBox() {
+    public boolean getIsRestaurantBox() {
         return isRestaurantBox;
     }
 
@@ -30,7 +30,7 @@ public class ProductFeature {
         isRestaurantBox = restaurantBox;
     }
 
-    public boolean isShopProduct() {
+    public boolean getIsShopProduct() {
         return isShopProduct;
     }
 
@@ -53,5 +53,14 @@ public class ProductFeature {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductFeature{" +
+                "isVegetarian=" + isVegetarian +
+                ", isRestaurantBox=" + isRestaurantBox +
+                ", isShopProduct=" + isShopProduct +
+                '}';
     }
 }
