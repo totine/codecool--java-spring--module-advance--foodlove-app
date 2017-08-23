@@ -69,7 +69,6 @@ public class ProductController {
 
         savedProduct.setProductFeature(savedProductFeature);
         savedProductFeature.setProduct(savedProduct);
-        System.out.println(savedProductFeature.getIsVegetarian());
         return "redirect:/product/show/" + savedProduct.getId();
     }
 
