@@ -20,15 +20,18 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="/public/css/custom.css" />
+    <link href="../../static/css/custom.css"
+          th:href="@{css/custom.css}" rel="stylesheet" media="screen"/>
+
 </head>
 <body>
 
 <h1>FOOD LOVE</h1>
 
 <div class="container">
+
     <div th:if="${not #lists.isEmpty(products)}">
-        <h2>Product List</h2>
+        <h2 class="main-header">Product List</h2>
         <table class="table table-striped">
             <tr>
                 <th>Image URL</th>
@@ -68,8 +71,13 @@
             <a href="/product/new">New Product</a>
         </div>
     </div>
-
 </div>
-
+<footer class="footer">
+    Copyright 2017 CUP OF JAVA
+</footer>
 </body>
 </html>
+
+
+
+
