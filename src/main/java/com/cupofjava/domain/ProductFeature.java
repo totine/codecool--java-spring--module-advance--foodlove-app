@@ -8,9 +8,9 @@ public class ProductFeature {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private boolean isVegetarian = false;
-    private boolean isRestaurantBox = false;
-    private boolean isShopProduct = true;
+    private boolean isVegetarian;
+    private boolean isRestaurantBox;
+    private boolean isShopProduct;
     @OneToOne(mappedBy = "productFeature")
     private Product product;
 
