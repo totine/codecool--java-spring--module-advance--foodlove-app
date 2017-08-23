@@ -8,36 +8,11 @@ public class ProductFeature {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private boolean isVegetarian = false;
-    private boolean isRestaurantBox = false;
-    private boolean isShopProduct = true;
+    private boolean isVegetarian;
+    private boolean isRestaurantBox;
+    private boolean isShopProduct;
     @OneToOne(mappedBy = "productFeature")
     private Product product;
-
-    public boolean getIsVegetarian() {
-        return isVegetarian;
-    }
-
-    public void setVegetarian(boolean vegetarian) {
-        isVegetarian = vegetarian;
-    }
-
-    public boolean getIsRestaurantBox() {
-        return isRestaurantBox;
-    }
-
-    public void setRestaurantBox(boolean restaurantBox) {
-        isRestaurantBox = restaurantBox;
-    }
-
-    public boolean getIsShopProduct() {
-        return isShopProduct;
-    }
-
-    public void setShopProduct(boolean shopProduct) {
-        isShopProduct = shopProduct;
-    }
-
 
     public Long getId() {
         return id;
@@ -45,6 +20,30 @@ public class ProductFeature {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean getIsVegetarian() {
+        return isVegetarian;
+    }
+
+    public void setIsVegetarian(boolean vegetarian) {
+        isVegetarian = vegetarian;
+    }
+
+    public boolean getIsRestaurantBox() {
+        return isRestaurantBox;
+    }
+
+    public void setIsRestaurantBox(boolean restaurantBox) {
+        isRestaurantBox = restaurantBox;
+    }
+
+    public boolean getIsShopProduct() {
+        return isShopProduct;
+    }
+
+    public void setIsShopProduct(boolean shopProduct) {
+        isShopProduct = shopProduct;
     }
 
     public Product getProduct() {
