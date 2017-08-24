@@ -62,11 +62,11 @@
 }
 body {
     font-family: Montserrat, sans-serif;
-    background: #C0C0C0;
+    background: white;
 }
 
 p {
-    color: #665544;
+    color: white;
 }
 
 .main-header {
