@@ -14,4 +14,9 @@ public class RestauratorController{
         return "restaurator/login";
     }
 
+    @RequestMapping("/restaurators/{id}")
+    public String restauratorPanel(){
+        return "restaurator/restauratorPanel";
+    }
+
 }
