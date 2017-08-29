@@ -26,10 +26,10 @@ public class ProductController {
         this.productFeatureService = productFeatureService;
     }
 
-    @RequestMapping("/")
-    public String redirToList(){
-        return "redirect:/product/list";
-    }
+//    @RequestMapping("/")
+//    public String redirToList(){
+//        return "redirect:/product/list";
+//    }
 
     @RequestMapping({"/product/list", "/product"})
     public String listProducts(Model model){
