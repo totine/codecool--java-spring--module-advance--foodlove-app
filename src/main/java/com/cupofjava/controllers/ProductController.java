@@ -26,19 +26,15 @@ public class ProductController {
         this.productFeatureService = productFeatureService;
     }
 
-    @RequestMapping("/")
-    public String redirToList(){
-        return "redirect:/product/list";
-    }
 
-    @RequestMapping({"/product/list", "/product"})
+    @RequestMapping("restaurators/{id}/restaurants/{id}/products/")
     public String listProducts(Model model){
         model.addAttribute("products", productService.listAll());
         model.addAttribute("productsFeatures", productFeatureService.listAll());
         return "product/list";
     }
 
-    @RequestMapping("/product/show/{id}")
+    @RequestMapping("restaurators/{id}/restaurants/{id}/products/{id}")
     public String getProduct(@PathVariable String id, Model model){
         model.addAttribute("product", productService.getById(Long.valueOf(id)));
         return "product/show";
@@ -51,14 +47,14 @@ public class ProductController {
         return "product/productform";
     }
 
-    @RequestMapping("/product/new")
+    @RequestMapping("/restaurators/{id}/restaurants/{id}/products/add")
     public String newProduct(Model model){
         model.addAttribute("productForm", new Product());
         model.addAttribute("productFeatureForm", new ProductFeature());
         return "product/productform";
     }
 
-    @RequestMapping(value = "/product", method = RequestMethod.POST)
+    @RequestMapping(value = "/restaurators/{id}/restaurants/{id}/products/", method = RequestMethod.POST)
     public String saveOrUpdateProduct(@Valid Product product, ProductFeature productFeature, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "product/productform";
@@ -69,12 +65,12 @@ public class ProductController {
 
         savedProduct.setProductFeature(savedProductFeature);
         savedProductFeature.setProduct(savedProduct);
-        return "redirect:/product/show/" + savedProduct.getId();
+        return "redirect:/restaurators/{id}/restaurants/{id}/products/" + savedProduct.getId();
     }
 
-    @RequestMapping("/product/delete/{id}")
+    @RequestMapping("/restaurators/{id}/restaurants/{id}/products/delete/{id}")
     public String delete(@PathVariable String id){
         productService.delete(Long.valueOf(id));
-        return "redirect:/product/list";
+        return "redirect:/restaurators/{id}/restaurants/{id}/products/";
     }
 }
