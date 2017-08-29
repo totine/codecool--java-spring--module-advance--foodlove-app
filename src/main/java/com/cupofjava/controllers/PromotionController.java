@@ -16,4 +16,10 @@ public class PromotionController {
         return "promotion/main";
     }
 
+    @RequestMapping("/promotions/{id}")
+    public String promotionDetails(){
+        return "promotion/promotionDetails";
+    }
+
+
 }
