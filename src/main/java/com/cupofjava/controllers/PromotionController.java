@@ -20,9 +20,13 @@ public class PromotionController {
     public String promotionDetails(){
         return "promotion/promotionDetails";
     }
-    @RequestMapping("/restaurators/1/restaurants/1/promotions/add")
+    @RequestMapping("/restaurators/{id}/restaurants/{id}/promotions/add")
     public String createPromotion(){
         return "promotion/createPromotionForm";
+    }
+    @RequestMapping("/restaurators/{id}/restaurants/{id}/promotions/")
+    public String promotionList(){
+        return "promotion/list";
     }
 
 
