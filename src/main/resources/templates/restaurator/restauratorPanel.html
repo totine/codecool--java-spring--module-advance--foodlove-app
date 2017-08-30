@@ -1,11 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Panel Restauratora</title>
 </head>
 <body>
 <h1>Panel Restauratora służy do zarządzania restauracjami, danymi, docelowo pracownikami i ich uprawnieniami.</h1>
 <h2>Na razie powinien mieć możliwość wejścia do swojej 1 restauracji, którą posiada</h2>
+
+
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Adress</th>
+        <th>Owner</th>
+        <th>Image</th>
+    </tr>
+    <tr th:each="restaurant : ${restaurantList}">
+        <td th:text="${restaurant.id}"></td>
+        <td><a th:href="${'/restaurators/1/restaurant/' + restaurant.id}" th:text="${restaurant.name}"></a></td>
+        <td th:text="${restaurant.address}"></td>
+        <td th:text="${restaurant.restaurator}"></td>
+        <td> zdjęcie </td>
+    </tr>
+</table><br/><br/><br/>
 
 
 <a href="/restaurators/1/restaurants/1">Restauracja numer 1</a><br/>

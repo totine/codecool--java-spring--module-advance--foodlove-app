@@ -17,7 +17,7 @@ wybór na którego restauratora chcemy wejść</h2>
     </tr>
     <tr th:each="restaurator : ${restaurators}">
         <td th:text="${restaurator.id}"></td>
-        <td th:text="${restaurator.name}"></td>
+        <td><a th:href="${'/restaurators/' + restaurator.id}" th:text="${restaurator.name}"></a></td>
         <td> <img src="http://i.iplsc.com/magda-gessler/0003R6XVE95XBRW9-C122-F4.jpg" height="150"/></td>
     </tr>
 </table><br/><br/><br/>

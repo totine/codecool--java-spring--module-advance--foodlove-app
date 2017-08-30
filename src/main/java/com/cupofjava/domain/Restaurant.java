@@ -14,14 +14,14 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String adress;
+    private String address;
     @ManyToOne
     @JoinColumn(name = "restaurator_id")
     private Restaurator restaurator;
 
-    public Restaurant(String name, String adress) {
+    public Restaurant(String name, String address) {
         this.name = name;
-        this.adress = adress;
+        this.address = address;
         this.restaurator = restaurator;
     }
 
@@ -41,12 +41,12 @@ public class Restaurant {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Restaurator getRestaurator() {

@@ -11,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -47,9 +50,10 @@ public class RestauratorController{
         restaurantSet.add(restaurant1);
         restaurantSet.add(restaurant2);
         Set<Restaurant> restaurantSet2 = new HashSet<>();
-        restaurantSet.add(restaurant3);
-        restaurantSet.add(restaurant4);
+        restaurantSet2.add(restaurant3);
+        restaurantSet2.add(restaurant4);
         Restaurator restaurator = new Restaurator("Magda Gessler", restaurantSet);
+        System.out.println(restaurator.getRestaurants() + "restauracje");
         Restaurator restaurator2 = new Restaurator("Modest Amaro", restaurantSet);
         Restaurant savedRestaurant1 = restaurantService.saveOrUpdate(restaurant1);
         Restaurant savedRestaurant2 = restaurantService.saveOrUpdate(restaurant2);
@@ -57,11 +61,24 @@ public class RestauratorController{
         Restaurant savedRestaurant4 = restaurantService.saveOrUpdate(restaurant4);
         Restaurator savedRestaurator = restauratorService.saveOrUpdate(restaurator);
         Restaurator savedRestaurator2 = restauratorService.saveOrUpdate(restaurator2);
+        savedRestaurator.setRestaurants(restaurantSet);
+        savedRestaurator2.setRestaurants(restaurantSet2);
+        System.out.println(restauratorService.getById(Long.valueOf(1)).getRestaurants() + "wyciągnięte ");
+
         return "redirect:/restaurators/login";
     }
 
     @RequestMapping("/restaurators/{id}")
-    public String restauratorPanel(){
+    public String restauratorPanel(@PathVariable String id, Model model){
+        Restaurator restaurator = restauratorService.getById(Long.valueOf(id));
+        System.out.println(restauratorService.getById(Long.valueOf(1)).getRestaurants() + "wyciągnięte po raz 2 ");
+        List<Restaurant> restaurantList = new ArrayList<>();
+        restaurantList.addAll(restaurator.getRestaurants());
+        System.out.println("id jest takie " + id);
+        System.out.println(restaurator + "to jest ten restaurator");
+        System.out.println(restaurator.getRestaurants() + "to jest to");
+        System.out.println(restaurantList + "lista");
+        model.addAttribute("restaurantList", restaurantList);
         return "restaurator/restauratorPanel";
     }
 
