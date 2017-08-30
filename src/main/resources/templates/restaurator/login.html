@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Logowanie do panelu restauratora</title>
 </head>
@@ -7,6 +7,20 @@
 <h1>To jest strona z logowaniem do panelu restauratora (NIE PANELU RESTAURACJI!)</h1>
 <h2>Docelowo powinna zawierać panel logowania/ rejestracji/ ale to nie w tym sprincie/ teraz powinien byc po prostu
 wybór na którego restauratora chcemy wejść</h2>
+
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Image</th>
+    </tr>
+    <tr th:each="restaurator : ${restaurators}">
+        <td th:text="${restaurator.id}"></td>
+        <td th:text="${restaurator.name}"></td>
+        <td> <img src="http://i.iplsc.com/magda-gessler/0003R6XVE95XBRW9-C122-F4.jpg" height="150"/></td>
+    </tr>
+</table><br/><br/><br/>
 
 
 <a href="/restaurators/1">Restaurator 1</a><br/>
