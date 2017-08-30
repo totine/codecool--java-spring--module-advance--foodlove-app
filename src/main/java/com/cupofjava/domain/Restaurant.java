@@ -19,6 +19,12 @@ public class Restaurant {
     @JoinColumn(name = "restaurator_id")
     private Restaurator restaurator;
 
+    public Restaurant(String name, String adress) {
+        this.name = name;
+        this.adress = adress;
+        this.restaurator = restaurator;
+    }
+
     public Long getId() {
         return id;
     }

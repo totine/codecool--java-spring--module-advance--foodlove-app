@@ -2,6 +2,8 @@ package com.cupofjava.services;
 
 import com.cupofjava.domain.Restaurant;
 import com.cupofjava.repositories.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +11,15 @@ import java.util.List;
 /**
  * Created by oskar on 30.08.17.
  */
+@Service
 public class RestaurantServiceImpl implements RestaurantService {
 
     private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    public RestaurantServiceImpl(RestaurantRepository restaurantRepository) {
+        this.restaurantRepository = restaurantRepository;
+    }
 
     @Override
     public List<Restaurant> listAll() {

@@ -19,6 +19,14 @@ public class Restaurator {
     @OneToMany(mappedBy = "restaurator", cascade = CascadeType.ALL)
     private Set<Restaurant> restaurants;
 
+    public Restaurator(String name, Set<Restaurant> restaurants) {
+        this.name = name;
+        this.restaurants = restaurants;
+    }
+
+    public Restaurator() {
+    }
+
     public Long getId() {
         return id;
     }
