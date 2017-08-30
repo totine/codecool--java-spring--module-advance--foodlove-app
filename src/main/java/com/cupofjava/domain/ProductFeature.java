@@ -3,15 +3,15 @@ package com.cupofjava.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "product_feature")
+@Table(name = "product_features")
 public class ProductFeature {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private boolean isVegetarian;
     private boolean isRestaurantBox;
-    private boolean isShopProduct;
-    @OneToOne(mappedBy = "productFeature")
+    private boolean isShopProducts;
+    @OneToOne(mappedBy = "productFeatures")
     private Product product;
 
     public Long getId() {

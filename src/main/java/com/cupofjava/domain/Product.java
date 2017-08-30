@@ -5,26 +5,26 @@ import java.math.BigDecimal;
 
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long _id;
+    private Long id;
     private String description;
     private BigDecimal price;
     private String imageUrl;
     @OneToOne
-    @JoinColumn(name = "product_feature_id")
+    @JoinColumn(name = "product_features_id")
     private ProductFeature productFeature;
 
 
     public Long getId() {
-        return _id;
+        return id;
     }
 
     public void setId(Long id) {
-        this._id = id;
+        this.id = id;
     }
 
     public String getDescription() {
