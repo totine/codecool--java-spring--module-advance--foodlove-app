@@ -53,31 +53,20 @@ public class RestauratorController{
         restaurantSet2.add(restaurant3);
         restaurantSet2.add(restaurant4);
         Restaurator restaurator = new Restaurator("Magda Gessler", restaurantSet);
-        System.out.println(restaurator.getRestaurants() + "restauracje");
-        Restaurator restaurator2 = new Restaurator("Modest Amaro", restaurantSet);
-        Restaurant savedRestaurant1 = restaurantService.saveOrUpdate(restaurant1);
-        Restaurant savedRestaurant2 = restaurantService.saveOrUpdate(restaurant2);
-        Restaurant savedRestaurant3 = restaurantService.saveOrUpdate(restaurant3);
-        Restaurant savedRestaurant4 = restaurantService.saveOrUpdate(restaurant4);
-        Restaurator savedRestaurator = restauratorService.saveOrUpdate(restaurator);
-        Restaurator savedRestaurator2 = restauratorService.saveOrUpdate(restaurator2);
-        savedRestaurator.setRestaurants(restaurantSet);
-        savedRestaurator2.setRestaurants(restaurantSet2);
-        System.out.println(restauratorService.getById(Long.valueOf(1)).getRestaurants() + "wyciągnięte ");
-
+        Restaurator restaurator2 = new Restaurator("Modest Amaro", restaurantSet2);
+        restaurantService.saveOrUpdate(restaurant1);
+        restaurantService.saveOrUpdate(restaurant2);
+        restaurantService.saveOrUpdate(restaurant3);
+        restaurantService.saveOrUpdate(restaurant4);
+        restauratorService.saveOrUpdate(restaurator);
+        restauratorService.saveOrUpdate(restaurator2);
         return "redirect:/restaurators/login";
     }
 
     @RequestMapping("/restaurators/{id}")
     public String restauratorPanel(@PathVariable String id, Model model){
-        Restaurator restaurator = restauratorService.getById(Long.valueOf(id));
-        System.out.println(restauratorService.getById(Long.valueOf(1)).getRestaurants() + "wyciągnięte po raz 2 ");
         List<Restaurant> restaurantList = new ArrayList<>();
-        restaurantList.addAll(restaurator.getRestaurants());
-        System.out.println("id jest takie " + id);
-        System.out.println(restaurator + "to jest ten restaurator");
-        System.out.println(restaurator.getRestaurants() + "to jest to");
-        System.out.println(restaurantList + "lista");
+        restaurantList.addAll(restauratorService.getById(Long.valueOf(id)).getRestaurants());
         model.addAttribute("restaurantList", restaurantList);
         return "restaurator/restauratorPanel";
     }
