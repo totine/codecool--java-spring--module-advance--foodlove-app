@@ -2,31 +2,29 @@ package com.cupofjava.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by oskar on 30.08.17.
- */
 
 @Entity
-@Table(name = "restaurators")
 public class Restaurator {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "restaurator", cascade = CascadeType.ALL)
-    private Set<Restaurant> restaurants;
+    private String imgUrl;
+    private Set<Restaurant> restaurants = new HashSet<>();
 
     public Restaurator(String name, Set<Restaurant> restaurants) {
         this.name = name;
         this.restaurants = restaurants;
+        this.imgUrl = "http://www.goodgrubbs.com/portals/0/iconBiz.png";
     }
 
     public Restaurator() {
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     public Long getId() {
         return id;
     }
@@ -43,6 +41,15 @@ public class Restaurator {
         this.name = name;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     public Set<Restaurant> getRestaurants() {
         return restaurants;
     }

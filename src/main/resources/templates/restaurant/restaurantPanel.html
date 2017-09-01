@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Panel Restauracji</title>
 </head>
@@ -12,12 +12,23 @@
     <li>Produkty CRUD</li>
     <li>Powrót do panelu restauratora</li>
 </ul>
+<br/>
+<br/>
+<br/>
+<br/>
+<h1 th:text="'Jesteś na stronie restauracji: ' + ${restaurant.name}"></h1>
+<h2 th:text="'Adres restauracji to: '+ ${restaurant.address}" ></h2>
+<img th:src="${restaurant.imgUrl}" height="150"/>
 
-
-<a href="/restaurators/1/restaurants/1/promotions/add">Utwórz nową promocję (Formularz do dodawania promocji)</a><br/>
-<a href="/restaurators/1/restaurants/1/promotions/">Promocje lista CRUD</a><br/>
-<a href="/restaurators/1/restaurants/1/products/add">Dodaj produkt</a><br/>
-<a href="/restaurators/1/restaurants/1/products/">Produkty lista CRUD</a><br/>
-<a href="/restaurators/1">Powrót do panelu restauratora</a>
+<br/>
+<br/>
+<br/>
+<br/>
+<h1> Panel boczny</h1>
+<a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/add'}">Utwórz nową promocję (Formularz do dodawania promocji)</a><br/>
+<a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/'}">Promocje lista CRUD</a><br/>
+<a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/products/add'}">Dodaj produkt</a><br/>
+<a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/products/'}">Produkty lista CRUD</a><br/>
+<a th:href="${'/restaurators/'+restaurant.restaurator.id}">Powrót do panelu restauratora</a>
 </body>
 </html>

@@ -7,24 +7,26 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "restaurant")
 public class Restaurant {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String address;
-    @ManyToOne
-    @JoinColumn(name = "restaurator_id")
     private Restaurator restaurator;
+    private String imgUrl;
 
     public Restaurant(String name, String address) {
         this.name = name;
         this.address = address;
-        this.restaurator = restaurator;
+        this.imgUrl  = "http://www.safetysignsandnotices.co.uk/images/D/gs12.gif";
     }
 
+    public Restaurant() {
+    }
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -49,9 +51,19 @@ public class Restaurant {
         this.address = address;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    @ManyToOne
     public Restaurator getRestaurator() {
         return restaurator;
     }
+
 
     public void setRestaurator(Restaurator restaurator) {
         this.restaurator = restaurator;

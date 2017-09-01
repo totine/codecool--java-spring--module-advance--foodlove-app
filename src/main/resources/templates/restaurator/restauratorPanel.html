@@ -19,10 +19,10 @@
     </tr>
     <tr th:each="restaurant : ${restaurantList}">
         <td th:text="${restaurant.id}"></td>
-        <td><a th:href="${'/restaurators/1/restaurant/' + restaurant.id}" th:text="${restaurant.name}"></a></td>
+        <td><a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/' + restaurant.id}" th:text="${restaurant.name}"></a></td>
         <td th:text="${restaurant.address}"></td>
-        <td th:text="${restaurant.restaurator}"></td>
-        <td> zdjęcie </td>
+        <td th:text="${restaurant.restaurator.name}"></td>
+        <td> <img th:src="${restaurant.imgUrl}" height="150"/> </td>
     </tr>
 </table><br/><br/><br/>
 

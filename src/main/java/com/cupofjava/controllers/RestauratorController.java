@@ -60,11 +60,20 @@ public class RestauratorController{
         restaurantService.saveOrUpdate(restaurant4);
         restauratorService.saveOrUpdate(restaurator);
         restauratorService.saveOrUpdate(restaurator2);
+        restaurant1.setRestaurator(restaurator);
+        restaurant2.setRestaurator(restaurator);
+        restaurant3.setRestaurator(restaurator2);
+        restaurant4.setRestaurator(restaurator2);
+        restaurantService.saveOrUpdate(restaurant1);
+        restaurantService.saveOrUpdate(restaurant2);
+        restaurantService.saveOrUpdate(restaurant3);
+        restaurantService.saveOrUpdate(restaurant4);    ///Trzeba zrobić to jakoś w konstruktorze(chyba), zeby samo dodawało własciciela do restauracji, ale to skomplikowane.
         return "redirect:/restaurators/login";
     }
 
     @RequestMapping("/restaurators/{id}")
     public String restauratorPanel(@PathVariable String id, Model model){
+
         List<Restaurant> restaurantList = new ArrayList<>();
         restaurantList.addAll(restauratorService.getById(Long.valueOf(id)).getRestaurants());
         model.addAttribute("restaurantList", restaurantList);
