@@ -1,6 +1,8 @@
 package com.cupofjava.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by oskar on 30.08.17.
@@ -14,6 +16,8 @@ public class Restaurant {
     private String address;
     private Restaurator restaurator;
     private String imgUrl;
+    private Set<Product> products = new HashSet<>();
+    private Set<Promotion> promotions = new HashSet<>();
 
     public Restaurant(String name, String address) {
         this.name = name;
@@ -57,6 +61,24 @@ public class Restaurant {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    public Set<Promotion> getPromotions() {
+        return promotions;
+    }
+
+    public void setPromotions(Set<Promotion> promotions) {
+        this.promotions = promotions;
     }
 
     @ManyToOne

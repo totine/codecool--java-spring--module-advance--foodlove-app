@@ -2,8 +2,10 @@ package com.cupofjava.controllers;
 
 import com.cupofjava.domain.Product;
 import com.cupofjava.domain.ProductFeature;
+import com.cupofjava.domain.Restaurant;
 import com.cupofjava.services.ProductFeatureService;
 import com.cupofjava.services.ProductService;
+import com.cupofjava.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,23 +21,34 @@ import javax.validation.Valid;
 public class ProductController {
     private ProductService productService;
     private ProductFeatureService productFeatureService;
+    private RestaurantService restaurantService;
 
     @Autowired
+    public ProductController(ProductService productService, ProductFeatureService productFeatureService, RestaurantService restaurantService) {
+        this.productService = productService;
+        this.productFeatureService = productFeatureService;
+        this.restaurantService = restaurantService;
+    }
+
+
     public void setProductService(ProductService productService, ProductFeatureService productFeatureService) {
         this.productService = productService;
         this.productFeatureService = productFeatureService;
     }
 
 
-    @RequestMapping("restaurators/{id}/restaurants/{id}/products/")
-    public String listProducts(Model model){
-        model.addAttribute("products", productService.listAll());
+    @RequestMapping("restaurators/{id}/restaurants/{restaurant_id}/products/")
+    public String listProducts(Model model, @PathVariable(name = "restaurant_id") String restaurant_id){
+        System.out.println(restaurantService.getById(Long.valueOf(restaurant_id)));
+        model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
+        model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
         model.addAttribute("productsFeatures", productFeatureService.listAll());
         return "product/list";
     }
 
-    @RequestMapping("restaurators/{id}/restaurants/{id}/products/{id}")
-    public String getProduct(@PathVariable String id, Model model){
+    @RequestMapping("restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/{id}")
+    public String getProduct(@PathVariable String id, @PathVariable String restaurant_id, Model model){
+        model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("product", productService.getById(Long.valueOf(id)));
         return "product/show";
     }
@@ -47,25 +60,32 @@ public class ProductController {
         return "product/productform";
     }
 
-    @RequestMapping("/restaurators/{id}/restaurants/{id}/products/add")
-    public String newProduct(Model model){
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/add")
+    public String newProduct(@PathVariable(name = "restaurator_id") String restaurator_id,
+                             @PathVariable(name = "restaurant_id") String restaurant_id, Model model){
+        model.addAttribute("restaurator_id", restaurator_id);
+        model.addAttribute("restaurant_id", restaurant_id);
+        model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("productForm", new Product());
         model.addAttribute("productFeatureForm", new ProductFeature());
         return "product/productform";
     }
 
-    @RequestMapping(value = "/restaurators/{id}/restaurants/{id}/products/", method = RequestMethod.POST)
-    public String saveOrUpdateProduct(@Valid Product product, ProductFeature productFeature, BindingResult bindingResult){
+    @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/", method = RequestMethod.POST)
+    public String saveOrUpdateProduct(@Valid Product product, ProductFeature productFeature, BindingResult bindingResult,
+    @PathVariable(name = "restaurator_id") String restaurator_id, @PathVariable(name = "restaurant_id") String restaurant_id){
         if(bindingResult.hasErrors()){
             return "product/productform";
         }
 
         ProductFeature savedProductFeature = productFeatureService.saveOrUpdateProductFeature(productFeature);
         Product savedProduct = productService.saveOrUpdateProduct(product);
-
         savedProduct.setProductFeature(savedProductFeature);
         savedProductFeature.setProduct(savedProduct);
-        return "redirect:/restaurators/{id}/restaurants/{id}/products/" + savedProduct.getId();
+        Restaurant restaurant = restaurantService.getById(Long.valueOf(restaurant_id));
+        restaurant.getProducts().add(savedProduct);
+        restaurantService.saveOrUpdate(restaurant);
+        return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/" + savedProduct.getId();
     }
 
     @RequestMapping("/restaurators/{id}/restaurants/{id}/products/delete/{id}")
