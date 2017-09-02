@@ -1,0 +1,210 @@
+.glyphicon {
+    margin-right:5px;
+}
+.thumbnail
+{
+    margin-bottom: 20px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+.thumbnail img
+{
+    margin-top: 10px;
+}
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+.item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
+{
+    background: #428bca;
+}
+
+.item.list-group-item .list-group-image
+{
+    margin-right: 10px;
+}
+.item.list-group-item .thumbnail
+{
+    margin-bottom: 0px;
+}
+.item.list-group-item .caption
+{
+    padding: 9px 9px 0px 9px;
+}
+.item.list-group-item:nth-of-type(odd)
+{
+    background: #eeeeee;
+}
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item img
+{
+    float: left;
+}
+.item.list-group-item:after
+{
+    clear: both;
+}
+.list-group-item-text
+{
+    margin: 0 0 11px;
+}
+body {
+    font-family: Montserrat, sans-serif;
+    background: white;
+}
+
+p {
+    color: white;
+}
+
+.main-header {
+    margin-top: 50px;
+    margin-left: 50px;
+    font-family: 'Fredericka the Great';
+    color: #1D2C37;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    font-weight: 100;
+    line-height: 1.9;
+}
+
+.article-section-header {
+    font-family: Montserrat, sans-serif;
+    color: #1D2C37;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.2rem;
+    line-height: 1.9;
+    transition: all .5s ease-in;
+}
+
+.article-section-header:hover {
+    color: #a28351;
+}
+
+.article-section-paragraph {
+    font-family: Montserrat, sans-serif;
+    color: #808080;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    line-height: 1.9;
+}
+
+.article-link {
+    border-style: dotted;
+    text-decoration: none;
+    font-family: Montserrat, sans-serif;
+    color: #808080;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    line-height: 1.9;
+}
+
+.main-menu-link {
+    font-family: 'Fredericka the Great';
+    color: #808080;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.8rem;
+    line-height: 1.9;
+    text-decoration: none;
+    transition: all .5s ease-in;
+}
+
+.main-menu-link:hover {
+    color: #a28351;
+}
+
+.main-menu-list {
+    font-family: 'Fredericka the Great';
+    text-transform: uppercase;
+    list-style: none;
+    display:inline-block;
+    position: fixed;
+    top: 0%;
+    right: 30px;
+}
+
+ul, ul li {
+    list-style: none;
+}
+
+ul li {
+    float: left;
+}
+
+ul a:link, ul a:visited {
+    text-decoration: none;
+    width: 100px;
+    text-align: center;
+    padding: 15px;
+}
+
+.image {
+    float:left;
+}
+
+.contact-form
+{
+    background-color: #808080;
+    border: solid 1px #a1a1a1;
+    border-style: dotted;
+    width: 500px;
+    position:fixed;
+    margin-right: 20px;
+    margin-left: 650px;
+}
+
+.contact-form-button {
+    margin-left: 300px;
+}
+
+.contact-form-element {
+    display: block;
+    padding: 5px;
+}
+
+.contact-form-input {
+    padding: 5px;
+    background: #fff;
+    transition: all .3s ease-in;
+}
+
+.contact-form-input:focus {
+    background: #eee;
+}
+
+.contact-form-input:invalid {
+    box-shadow: 6px 6px 3px rgba(200, 100, 100, 0.6);
+}
+
+.contact-form-button:active {
+    box-shadow: 6px 6px 3px rgba(200, 100, 100, 0.6);
+}
+
+.footer {
+    position:absolute;
+    bottom:0;
+    left:50%;
+    margin-left:-200px;
+    width:400px;
+    color: firebrick;
+    font-color: red;
+    font-family: Montserrat, sans-serif;
+
+}
