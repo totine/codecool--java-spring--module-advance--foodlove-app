@@ -19,10 +19,9 @@ public class Promotion {
     @DecimalMax("100.0") @DecimalMin("0.0")
     private double discount;
     private BigDecimal promotionalPrice;
+    private Long productId;
 
-
-    public Promotion(Product product, Date dateFrom, Date dateTo, double discount) {
-        this.product = product;
+    public Promotion(Date dateFrom, Date dateTo, double discount) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         this.discount = discount;
@@ -80,6 +79,14 @@ public class Promotion {
 
     public BigDecimal getPromotionalPrice() {
         return promotionalPrice;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public void setPromotionalPrice(BigDecimal promotionalPrice) {

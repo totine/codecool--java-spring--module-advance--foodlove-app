@@ -39,24 +39,21 @@
             <p>&nbsp;</p>
         </td>
         <td valign="top"><br/>
-            <h1>Formularz dodawania produktu który zawiera:</h1>
-            <ul>
-                <li>Rozwijaną liste produktów -  z produktem do wyboru (ostatnia rzecz na liście to link "dodaj prod"</li>
-                <li> Przycisk do dodania produktu na widoku</li>
-                <li>Ilość</li>
-                <li>Cena jednostkowa</li>
-                <li>%Promocjii</li>
-                <li>Cena po promocji</li>
-                <li>Data i godzina startu promocji</li>
-                <li>Data i godzina końca promocji</li>
-                <li>Switch dla statusu aktywna/nieaktywna</li>
-                <li>Przycisk dodania promocjii</li>
-            </ul>
-
-
-            <a href="/restaurators/1/restaurants/1/">Przycisk Submit( Dodaj promocję) metoda post</a><br/>
-
-            <a href="/restaurators/1/restaurants/1/">Wyjście z formularza</a><br/>
+            <h1>Formularz tworzenia nowej promocji</h1>
+            <form action="#" th:action="${'/restaurators/'+ restaurator_id +'/restaurants/'+restaurant_id+'/promotions/'}" th:object="${promotionForm}" method="post">
+                <!--<p>Id: <input type="hidden" th:field="*{id}" /></p>-->
+                <p>
+                    <select th:field="*{productId}"  id="dropOperator">
+                        <option value="0"> Wybierz produkt </option>
+                        <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.description}"></option>
+                    </select>
+                </p>
+                <p>Date From: <input type="text" th:field="*{dateFrom}" /></p>
+                <p>Date To: <input type="text" th:field="*{dateTo}" /></p>
+                <p>discount: <input type="number" th:field="*{discount}" /></p>
+                <p>promotionalPrice: <input type="number" th:field="*{promotionalPrice}" /></p>
+                <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+            </form>
             <p>&nbsp;</p>
             <p class="stopka"/>&copy; COPYRIGHT 2017 ALL RIGHTS RESERVED</td>
     </tr>
