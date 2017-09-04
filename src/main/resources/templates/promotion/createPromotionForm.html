@@ -48,8 +48,8 @@
                         <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.description}"></option>
                     </select>
                 </p>
-                <p>Date From: <input type="text" th:field="*{dateFrom}" /></p>
-                <p>Date To: <input type="text" th:field="*{dateTo}" /></p>
+                <p>Date From: <input type="date" th:field="*{dateFrom}" /></p>
+                <p>Date To: <input type="date" th:field="*{dateTo}" /></p>
                 <p>discount: <input type="number" th:field="*{discount}" /></p>
                 <p>promotionalPrice: <input type="number" th:field="*{promotionalPrice}" /></p>
                 <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>

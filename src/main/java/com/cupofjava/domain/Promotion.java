@@ -1,4 +1,6 @@
 package com.cupofjava.domain;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -13,8 +15,10 @@ public class Promotion {
     @OneToOne
     private Product product;
     @Future
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateFrom;  // wybrac odpowiedni typ daty, aby sie dobrze parsował w thymeleafie lub czymś innym.
     @Future
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateTo;
     @DecimalMax("100.0") @DecimalMin("0.0")
     private double discount;

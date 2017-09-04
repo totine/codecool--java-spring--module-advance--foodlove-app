@@ -39,25 +39,35 @@
             <p>&nbsp;</p>
         </td>
         <td valign="top"><br/>
-            <h1>Lista aktualnych promocji</h1>
-            <h2>Widoczna po wejściu na strone restauracji</h2>
-            <h2>Powinien zawierać przyciski</h2>
-            <ul>
-                <li>Dodaj promocje (przenosi do formularza)</li>
-                <li>Edytuj</li>
-                <li>Usuń</li>
-                <li>Szybki przycisk aktywny/nieaktywny</li>
-                <li>Wszystko w postaci tabelki - jak na razie </li>
-            </ul>
+        <div th:if="${not #lists.isEmpty(promotions)}">
+            <h2>promotion List</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>PromotionalPrice</th>
+                    <th>Discount</th>
+                    <th>Date From</th>
+                    <th>Date To</th>
+                    <th>Show</th>
+                    <th>Edit</th>
+                    <th>Delate</th>
 
 
-            <a href="/restaurators/1/restaurants/1/promotions/1">Detale promocji 1</a><br/>
-            <a href="/restaurators/1/restaurants/1/promotions/edit/1">Edytuj promocję 1</a><br/>
-            <a href="/restaurators/1/restaurants/1/promotions/delete/1">Usuń promocję 1</a><br/>
-            <a href="/restaurators/1/restaurants/1/promotions/add">Utwórz nową promocję (Formularz do dodawania promocji)</a><br/>
-
-
-            <a href="/restaurators/1">Powrót do panelu restauratora</a>
+                </tr>
+                <tr th:each="promotion : ${promotions}">
+                    <td><img class="group list-group-image" src="http://placehold.it/150x150/000/fff" th:attr="src='/img/promotion.jpg'" alt="" th:width="150" /></td>
+                    <td th:text="${promotion.id}"></td>
+                    <td th:text="${promotion.product.description}"></td>
+                    <td th:text="${promotion.promotionalPrice}"></td>
+                    <td th:text="${promotion.dateFrom}"></td>
+                    <td th:text="${promotion.dateTo}"></td>
+                    <td><a th:href="${'/product/show/' + promotion.id}">View</a> </td>
+                    <td><a th:href="${'/product/edit/' + promotion.id}">Edit</a> </td>
+                    <td><a th:href="${'/product/delete/' + promotion.id}">Delete</a> </td>
+                </tr>
+            </table>
+        </div>
             <p>&nbsp;</p>
             <p class="stopka"/>&copy; COPYRIGHT 2017 ALL RIGHTS RESERVED</td>
     </tr>
