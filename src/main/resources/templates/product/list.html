@@ -1,83 +1,91 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>LOVE FOOD APPLICATION</title>
-
-    <!-- Latest compiled and minified Jquery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-
-    <link href="../../static/css/custom.css"
-          th:href="@{/css/custom.css}" rel="stylesheet" media="screen"/>
-
+    <title>Panel Restauracji</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../css/style.css" />
 </head>
 <body>
-
-<h1 class="article-section-header">FOOD LOVE</h1>
-
-<div class="container">
-
-    <div th:if="${not #lists.isEmpty(products)}">
-        <h2 class="article-section-paragraph">Product List</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Image URL</th>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>List</th>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>FEATURES</th>
-            </tr>
-            <tr th:each="product : ${products}">
-                <td><img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${product.id} + '.jpg'" alt="" /></td>
-                <td th:text="${product.id}"></td>
-                <td th:text="${product.description}"></td>
-                <td th:text="${product.price}"></td>
-                <td><a th:href="${'/product/show/' + product.id}">View</a> </td>
-                <td><a th:href="${'/product/edit/' + product.id}">Edit</a> </td>
-                <td><a th:href="${'/product/delete/' + product.id}">Delete</a> </td>
-                <td>
-                    <div th:if="${not #lists.isEmpty(productsFeatures)}">
-                        <table class="table table-striped">
-                            <tr th:each="feature : ${productsFeatures}">
-                                <td th:text="${feature.id}"></td>
-                                <td th:text="${feature.isVegetarian}"></td>
-                                <td th:text="${feature.isShopProduct}"></td>
-                                <td th:text="${feature.isRestaurantBox}"></td>
-                            </tr>
-                        </table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0" background="/images/toptlo.gif">
+    <tr valign="top">
+        <td width="50%"><img border="0" src="/images/tlologo.gif" width="236" height="89"/></td>
+        <td width="50%" height="89">
+            <h1 class="logo">FoodLove menager 2000&nbsp;&nbsp;</h1>
+            <p class="logo" th:text="'Jesteś na stronie do zarządzania restauracją: ' + ${restaurant.name}">nazwa restauracji&nbsp;&nbsp;</p></td>
+    </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="184px" background="/images/tlo.gif" valign="top">
+            <img border="0" src="/images/menu.gif" width="184" height="39" alt="stdarek"/><br/>
+            <table ID="navigate" cellpadding="0" cellspacing="0" border="0">
+                <tr><td class="menu"><a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/add'}">Nowa Promocja</a><br/></td></tr>
+                <tr><td class="menu"><a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/'}">Promocje CRUD</a><br/></td></tr>
+                <tr><td class="menu"><a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/products/add'}">Dodaj produkt</a><br/></td></tr>
+                <tr><td class="menu"><a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/products/'}">Produkty CRUD</a><br/></td></tr>
+                <tr><td class="menu"><a th:href="${'/restaurators/'+restaurant.restaurator.id}">Panel Restauratora</a></td></tr>
+            </table>
+            <br/><br/>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+        </td>
+        <td valign="top"><br/>
+            <h1>Aktualne promocje</h1>
+            <div class="container">
+                <div th:if="${not #lists.isEmpty(products)}">
+                    <h2>Product List</h2>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Image URL</th>
+                            <th>Id</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>List</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                            <th>FEATURES</th>
+                        </tr>
+                        <tr th:each="product : ${products}">
+                            <td><img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${product.id} + '.jpg'" alt="" /></td>
+                            <td th:text="${product.id}"></td>
+                            <td th:text="${product.description}"></td>
+                            <td th:text="${product.price}"></td>
+                            <td><a th:href="${'/product/show/' + product.id}">View</a> </td>
+                            <td><a th:href="${'/product/edit/' + product.id}">Edit</a> </td>
+                            <td><a th:href="${'/product/delete/' + product.id}">Delete</a> </td>
+                            <td>
+                                <div th:if="${not #lists.isEmpty(productsFeatures)}">
+                                    <table class="table table-striped">
+                                        <tr th:each="feature : ${productsFeatures}">
+                                            <td th:text="${feature.id}"></td>
+                                            <td th:text="${feature.isVegetarian}"></td>
+                                            <td th:text="${feature.isShopProduct}"></td>
+                                            <td th:text="${feature.isRestaurantBox}"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <a href="/restaurators/1/restaurants/1/products/add">New Product</a>
                     </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="row">
-        <div class="main-menu-link">
-            <a href="/product/new">New Product</a>
-        </div>
-    </div>
-</div>
-<footer class="footer">
-    Copyright 2017 CUP OF JAVA
-</footer>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <p class="stopka"/>&copy; COPYRIGHT 2017 ALL RIGHTS RESERVED</td>
+    </tr>
+</table>
+
 </body>
+
 </html>
-
-
-
-

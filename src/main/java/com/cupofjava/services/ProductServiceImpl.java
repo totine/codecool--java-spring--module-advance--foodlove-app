@@ -42,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
         productRepository.delete(id);
     }
 
-    @Override
+    @Override ///metoda prawdopodobnie do usunięcia
     public Product saveOrUpdateProduct(Product product) {
         Product savedProduct = saveOrUpdate(product);
         System.out.println("Saved Product Id: " + savedProduct.getId());
