@@ -26,12 +26,12 @@
 </head>
 <body>
 
-<h1>FOOD LOVE</h1>
+<h1 class="article-section-header">FOOD LOVE</h1>
 
 <div class="container">
 
     <div th:if="${not #lists.isEmpty(products)}">
-        <h2 class="main-header">Product List</h2>
+        <h2 class="article-section-paragraph">Product List</h2>
         <table class="table table-striped">
             <tr>
                 <th>Image URL</th>
@@ -67,7 +67,7 @@
         </table>
     </div>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="main-menu-link">
             <a href="/product/new">New Product</a>
         </div>
     </div>

@@ -20,13 +20,14 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <link href="../../static/css/custom.css"
+          th:href="@{/css/custom.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
 <div class="container">
 
-    <h2>Product Details</h2>
-    <div>
+    <h2 class="article-section-header">Product Details</h2>
+    <div class="contact-form">
         <form class="form-horizontal" th:object="${productForm}" th:action="@{/product}" method="post">
 
             <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
