@@ -78,6 +78,7 @@ public class PromotionController {
         Promotion savedPromotion = promotionService.saveOrUpdate(promotion);
         Restaurant restaurant = restaurantService.getById(Long.valueOf(restaurant_id));
         restaurant.getPromotions().add(promotion);
+        restaurantService.saveOrUpdate(restaurant);
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/" + savedPromotion.getId();
 
