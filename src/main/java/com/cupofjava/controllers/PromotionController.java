@@ -73,6 +73,7 @@ public class PromotionController {
             System.out.println(bindingResult.getModel());
             return "errors/error";
         }
+
         Long productId =  promotion.getProductId();
         promotion.setProduct(productService.getById(productId));
         Promotion savedPromotion = promotionService.saveOrUpdate(promotion);
