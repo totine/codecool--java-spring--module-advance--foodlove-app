@@ -25,6 +25,10 @@ public class Promotion {
     private BigDecimal promotionalPrice;
     private Long productId;
 
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
     public Promotion(Date dateFrom, Date dateTo, double discount) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
@@ -96,4 +100,13 @@ public class Promotion {
     public void setPromotionalPrice(BigDecimal promotionalPrice) {
         this.promotionalPrice = promotionalPrice;
     }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 }
+

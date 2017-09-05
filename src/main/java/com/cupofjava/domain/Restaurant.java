@@ -11,13 +11,31 @@ import java.util.Set;
 @Entity
 public class Restaurant {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String address;
+
+    @JoinColumn(name = "restaurator_id")
+    @ManyToOne
     private Restaurator restaurator;
     private String imgUrl;
-    private Set<Product> products = new HashSet<>();
-    private Set<Promotion> promotions = new HashSet<>();
+
+    @JoinColumn
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<Product> products;
+
+    public Set<Promotion> getPromotions() {
+        return promotions;
+    }
+
+    public void setPromotions(Set<Promotion> promotions) {
+        this.promotions = promotions;
+    }
+
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    private Set<Promotion> promotions;
 
     public Restaurant(String name, String address) {
         this.name = name;
@@ -29,8 +47,7 @@ public class Restaurant {
     }
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     public Long getId() {
         return id;
     }
@@ -63,7 +80,7 @@ public class Restaurant {
         this.imgUrl = imgUrl;
     }
 
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+
     public Set<Product> getProducts() {
         return products;
     }
@@ -72,16 +89,7 @@ public class Restaurant {
         this.products = products;
     }
 
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-    public Set<Promotion> getPromotions() {
-        return promotions;
-    }
 
-    public void setPromotions(Set<Promotion> promotions) {
-        this.promotions = promotions;
-    }
-
-    @ManyToOne
     public Restaurator getRestaurator() {
         return restaurator;
     }

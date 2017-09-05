@@ -49,6 +49,7 @@ public class Restaurator {
         this.imgUrl = imgUrl;
     }
 
+    @JoinColumn
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     public Set<Restaurant> getRestaurants() {
         return restaurants;
