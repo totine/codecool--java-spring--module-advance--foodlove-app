@@ -1,7 +1,6 @@
 package com.cupofjava.domain;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,9 +8,12 @@ import java.util.Set;
 @Entity
 public class Restaurator {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String name;
     private String imgUrl;
+    @OneToMany(mappedBy = "restaurator")
     private Set<Restaurant> restaurants = new HashSet<>();
 
     public Restaurator(String name, Set<Restaurant> restaurants) {
@@ -23,8 +25,6 @@ public class Restaurator {
     public Restaurator() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
     public Long getId() {
         return id;
     }

@@ -12,19 +12,18 @@ public class Promotion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
     @Future
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateFrom;  // wybrac odpowiedni typ daty, aby sie dobrze parsował w thymeleafie lub czymś innym.
+    private Date dateFrom;
     @Future
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateTo;
     @DecimalMax("100.0") @DecimalMin("0.0")
     private double discount;
     private BigDecimal promotionalPrice;
-    private Long productId;
-
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
@@ -87,14 +86,6 @@ public class Promotion {
 
     public BigDecimal getPromotionalPrice() {
         return promotionalPrice;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public void setPromotionalPrice(BigDecimal promotionalPrice) {

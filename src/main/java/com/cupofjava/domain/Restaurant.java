@@ -1,12 +1,8 @@
 package com.cupofjava.domain;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by oskar on 30.08.17.
- */
 
 @Entity
 public class Restaurant {
@@ -16,24 +12,12 @@ public class Restaurant {
     private Long id;
     private String name;
     private String address;
-
-    @JoinColumn(name = "restaurator_id")
     @ManyToOne
+    @JoinColumn(name = "restaurator_id")
     private Restaurator restaurator;
     private String imgUrl;
-
-    @JoinColumn
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "restaurant", orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<Product> products;
-
-    public Set<Promotion> getPromotions() {
-        return promotions;
-    }
-
-    public void setPromotions(Set<Promotion> promotions) {
-        this.promotions = promotions;
-    }
-
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
     private Set<Promotion> promotions;
 
@@ -46,7 +30,13 @@ public class Restaurant {
     public Restaurant() {
     }
 
+    public Set<Promotion> getPromotions() {
+        return promotions;
+    }
 
+    public void setPromotions(Set<Promotion> promotions) {
+        this.promotions = promotions;
+    }
 
     public Long getId() {
         return id;
