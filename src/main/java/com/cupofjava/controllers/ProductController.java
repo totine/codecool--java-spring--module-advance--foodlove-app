@@ -30,13 +30,6 @@ public class ProductController {
         this.restaurantService = restaurantService;
     }
 
-
-    public void setProductService(ProductService productService, ProductFeatureService productFeatureService) {
-        this.productService = productService;
-        this.productFeatureService = productFeatureService;
-    }
-
-
     @RequestMapping("restaurators/{id}/restaurants/{restaurant_id}/products/")
     public String listProducts(Model model, @PathVariable(name = "restaurant_id") String restaurant_id){
         System.out.println(restaurantService.getById(Long.valueOf(restaurant_id)));
@@ -81,6 +74,7 @@ public class ProductController {
         ProductFeature savedProductFeature = productFeatureService.saveOrUpdateProductFeature(productFeature);
         Product savedProduct = productService.saveOrUpdateProduct(product);
         savedProduct.setProductFeature(savedProductFeature);
+        savedProduct.setRestaurant(restaurantService.getById(Long.valueOf(restaurant_id)));
         savedProductFeature.setProduct(savedProduct);
         Restaurant restaurant = restaurantService.getById(Long.valueOf(restaurant_id));
         restaurant.getProducts().add(savedProduct);

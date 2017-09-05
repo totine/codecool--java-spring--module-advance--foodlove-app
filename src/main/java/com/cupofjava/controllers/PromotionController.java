@@ -47,7 +47,7 @@ public class PromotionController {
 
     @GetMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/add")
     public String createPromotion(@PathVariable(name = "restaurant_id") String restaurant_id,
-                                  @PathVariable(name = "restaurator_id") String restaurator_id,Model model){
+                                  @PathVariable(name = "restaurator_id") String restaurator_id, Model model){
         model.addAttribute("restaurator_id", restaurator_id);
         model.addAttribute("restaurant_id", restaurant_id);
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
@@ -75,11 +75,13 @@ public class PromotionController {
         }
         Long productId =  promotion.getProduct().getId();
         promotion.setProduct(productService.getById(productId));
-        Promotion savedPromotion = promotionService.saveOrUpdate(promotion);
-        Restaurant restaurant = restaurantService.getById(Long.valueOf(restaurant_id));
-        restaurant.getPromotions().add(promotion);
+        promotionService.saveOrUpdate(promotion);
+        promotion.setRestaurant(restaurantService.getById(Long.valueOf(restaurant_id)));
+        restaurantService.getById(Long.valueOf(restaurant_id)).getPromotions().add(promotion);
+        promotionService.saveOrUpdate(promotion);
+        restaurantService.saveOrUpdate(restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
-        return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/" + savedPromotion.getId();
+        return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/" + promotion.getId();
 
     }
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/{promotion_id}")
