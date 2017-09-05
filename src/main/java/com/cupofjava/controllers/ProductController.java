@@ -30,16 +30,8 @@ public class ProductController {
         this.restaurantService = restaurantService;
     }
 
-
-    public void setProductService(ProductService productService, ProductFeatureService productFeatureService) {
-        this.productService = productService;
-        this.productFeatureService = productFeatureService;
-    }
-
-
-    @RequestMapping("restaurators/{id}/restaurants/{restaurant_id}/products/")
+    @RequestMapping("restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/")
     public String listProducts(Model model, @PathVariable(name = "restaurant_id") String restaurant_id){
-        System.out.println(restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
         model.addAttribute("productsFeatures", productFeatureService.listAll());
@@ -88,9 +80,12 @@ public class ProductController {
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/" + savedProduct.getId();
     }
 
-    @RequestMapping("/restaurators/{id}/restaurants/{id}/products/delete/{id}")
-    public String delete(@PathVariable String id){
-        productService.delete(Long.valueOf(id));
-        return "redirect:/restaurators/{id}/restaurants/{id}/products/";
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/delete/{product_id}")
+    public String delete(@PathVariable(name = "restaurant_id") String restaurant_id,
+                         @PathVariable(name = "product_id") String product_id){
+        restaurantService.getById(Long.valueOf(restaurant_id)).getProducts()
+                .remove(productService.getById(Long.valueOf(product_id)));
+        productService.delete(Long.valueOf(product_id));
+        return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/";
     }
 }
