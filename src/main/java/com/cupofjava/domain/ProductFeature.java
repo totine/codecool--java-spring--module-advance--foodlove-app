@@ -3,8 +3,8 @@ package com.cupofjava.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "product_feature")
 public class ProductFeature {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
