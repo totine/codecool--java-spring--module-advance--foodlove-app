@@ -1,13 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Strona główna</title>
 </head>
 <body>
 <h1>To jest strona główna z promocjami widoczna dla klienta</h1>
 <h2>Powinna zawierać link do kliknięcia w produkt(szczegóły produktu)</h2>
-<a href="/restaurators/login">Dla restauratora</a>
-<a href="/promotions/1">szczegóły promocji pierwszej</a>
 
+<div th:if="${not #lists.isEmpty(promotions)}">
+    <h2>promotion List</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>PromotionalPrice</th>
+            <th>Discount</th>
+            <th>Date From</th>
+            <th>Date To</th>
+        </tr>
+        <tr th:each="promotion : ${promotions}">
+            <td><img class="group list-group-image" src="http://placehold.it/150x150/000/fff" th:attr="src='/img/promotion.jpg'" alt="" th:width="150" /></td>
+            <td th:text="${promotion.id}"></td>
+            <td th:text="${promotion.product.description}"></td>
+            <td th:text="${promotion.promotionalPrice}"></td>
+            <td th:text="${promotion.dateFrom}"></td>
+            <td th:text="${promotion.dateTo}"></td>
+        </tr>
+    </table>
+</div>
+
+<a href="/restaurators/login">Dla restauratora</a>
+<a href="/promotions/1">szczegóły promocji pierwszej</a><br/><br/><br/>
+<a href="/restaurators/create">Przejdz do wyboru restauratora (tworzy 2 nowe obiekty retauratora z obiektami restauracjii) </a>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Panel Restauratora</title>
 </head>
@@ -8,12 +8,23 @@
 <h2>Na razie powinien mieć możliwość wejścia do swojej 1 restauracji, którą posiada</h2>
 
 
-<a href="/restaurators/1/restaurants/1">Restauracja numer 1</a><br/>
-<img src="http://www.belvederehotel.pl/uploads/image/szymanowskiego-300px-2.jpg" /><br/>
 
-<a href="/restaurators/1/restaurants/2">Restauracja numer 2</a><br/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Hotel_Astoria_Komor%C3%B3w.JPG/300px-Hotel_Astoria_Komor%C3%B3w.JPG" /><br/>
-
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Adress</th>
+        <th>Owner</th>
+        <th>Image</th>
+    </tr>
+    <tr th:each="restaurant : ${restaurantList}">
+        <td th:text="${restaurant.id}"></td>
+        <td><a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/' + restaurant.id}" th:text="${restaurant.name}"></a></td>
+        <td th:text="${restaurant.address}"></td>
+        <td th:text="${restaurant.restaurator.name}"></td>
+        <td> <img th:src="${restaurant.imgUrl}" height="150"/> </td>
+    </tr>
+</table><br/><br/><br/>
 
 <a href="/restaurators/login">Wyloguj</a>
 </body>

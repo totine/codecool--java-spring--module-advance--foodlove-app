@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Logowanie do panelu restauratora</title>
 </head>
@@ -9,9 +9,18 @@
 wybór na którego restauratora chcemy wejść</h2>
 
 
-<a href="/restaurators/1">Restaurator 1</a><br/>
-<a href="/restaurators/2">Restaurator 2</a><br/>
-<a href="/restaurators/3">Restaurator 3</a><br/>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Image</th>
+    </tr>
+    <tr th:each="restaurator : ${restaurators}">
+        <td th:text="${restaurator.id}"></td>
+        <td><a th:href="${'/restaurators/' + restaurator.id}" th:text="${restaurator.name}"></a></td>
+        <td> <img th:src="${restaurator.imgUrl}" height="150"/></td>
+    </tr>
+</table><br/><br/><br/>
 
 <a href="/">Powrót do widoku promocji (dla klienta)(Strona głowna)</a>
 </body>
