@@ -1,5 +1,6 @@
 package com.cupofjava.controllers;
 
+import com.cupofjava.domain.Product;
 import com.cupofjava.domain.Promotion;
 import com.cupofjava.services.PromotionService;
 import com.cupofjava.services.RestaurantService;
@@ -73,6 +74,7 @@ public class PromotionController {
             System.out.println(bindingResult.getModel());
             return "errors/error";
         }
+        System.out.println(promotion + "opis produktu");
         promotionService.savePromotionData(promotion, Long.valueOf(restaurant_id));
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/" + promotion.getId();
@@ -90,5 +92,12 @@ public class PromotionController {
     public String delete(@PathVariable String id){
         promotionService.delete(Long.valueOf(id));
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/";
+    }
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/edit/{id}")
+    public String edit(@PathVariable(name = "id") String id, @PathVariable(name = "restaurant_id") String restaurant_id, Model model){
+        model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
+        model.addAttribute("promotionForm", promotionService.getById(Long.valueOf(id)));
+        return "promotion/createPromotionForm";
+
     }
 }
