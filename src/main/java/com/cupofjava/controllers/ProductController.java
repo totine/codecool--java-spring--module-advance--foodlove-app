@@ -41,7 +41,7 @@ public class ProductController {
     public String getProduct(@PathVariable String id, @PathVariable String restaurant_id, Model model){
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("product", productService.getById(Long.valueOf(id)));
-        return "product/show";
+        return "dashboard/restaurant-product-show";
     }
 
     @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/edit/{product_id}")
@@ -52,7 +52,7 @@ public class ProductController {
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("productForm", product);
         model.addAttribute("productFeatureForm", product.getProductFeature());
-        return "product/productform";
+        return "dashboard/restaurant-product-add";
     }
 
     @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/add")
@@ -67,7 +67,7 @@ public class ProductController {
     public String saveOrUpdateProduct(@Valid Product product, ProductFeature productFeature, BindingResult bindingResult,
                                       @PathVariable(name = "restaurant_id") String restaurant_id){
         if(bindingResult.hasErrors()){
-            return "product/productform";
+            return "dashboard/restaurant-product-add";
         }
         productService.saveProductData(product, productFeature, Long.valueOf(restaurant_id));
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/" + product.getId();
