@@ -1,16 +1,12 @@
 package com.cupofjava.controllers;
 
-import com.cupofjava.domain.Product;
 import com.cupofjava.domain.Restaurant;
 import com.cupofjava.domain.Restaurator;
 import com.cupofjava.services.RestaurantService;
-import com.cupofjava.services.RestaurantServiceImpl;
 import com.cupofjava.services.RestauratorService;
-import com.cupofjava.services.RestauratorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,9 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by oskar on 29.08.17.
- */
+
 @Controller
 public class RestauratorController{
 
@@ -73,14 +67,10 @@ public class RestauratorController{
 
     @RequestMapping("/restaurators/{id}")
     public String restauratorPanel(@PathVariable String id, Model model){
-
         List<Restaurant> restaurantList = new ArrayList<>();
         restaurantList.addAll(restauratorService.getById(Long.valueOf(id)).getRestaurants());
         model.addAttribute("restaurantList", restaurantList);
      //   return "restaurator/restauratorPanel";
         return "/dashboard/base";
     }
-
-
-
 }

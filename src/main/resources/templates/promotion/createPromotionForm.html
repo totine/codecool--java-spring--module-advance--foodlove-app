@@ -40,10 +40,10 @@
         </td>
         <td valign="top"><br/>
             <h1>Formularz tworzenia nowej promocji</h1>
-            <form action="#" th:action="${'/restaurators/'+ restaurator_id +'/restaurants/'+restaurant_id+'/promotions/'}" th:object="${promotionForm}" method="post">
+            <form action="#" th:action="${'/restaurators/'+ restaurant.restaurator.id +'/restaurants/'+restaurant.id+'/promotions/'}" th:object="${promotionForm}" method="post">
                 <!--<p>Id: <input type="hidden" th:field="*{id}" /></p>-->
                 <p>
-                    <select th:field="*{productId}"  id="dropOperator">
+                    <select th:field="*{product}"  id="dropOperator">
                         <option value="0"> Wybierz produkt </option>
                         <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.description}"></option>
                     </select>
