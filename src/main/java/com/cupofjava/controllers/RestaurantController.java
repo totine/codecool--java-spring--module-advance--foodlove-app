@@ -22,7 +22,7 @@ public class RestaurantController {
     public String restaurantPanel(@PathVariable("restaurant_id") String restaurant_id, Model model) {
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
  //       return "restaurant/restaurantPanel";
-        return "dashboard/restaurant";
+        return "dashboard/restaurant-promotions";
     }
 }
 

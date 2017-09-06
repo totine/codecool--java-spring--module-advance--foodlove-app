@@ -33,7 +33,13 @@
         -->
 
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text">
+            <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/'}"
+               class="simple-text">
+                FoodLove
+            </a>
+            <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/'}"
+               th:text="${restaurant.name}"
+               class="simple-text">
                 FoodLove
             </a>
         </div>
