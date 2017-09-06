@@ -74,4 +74,10 @@ public class PromotionController {
         model.addAttribute("promotion", promotionService.getById(Long.valueOf(promotion_id)));
         return "promotion/show";
     }
+
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/delete/{id}")
+    public String delete(@PathVariable String id){
+        promotionService.delete(Long.valueOf(id));
+        return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/";
+    }
 }
