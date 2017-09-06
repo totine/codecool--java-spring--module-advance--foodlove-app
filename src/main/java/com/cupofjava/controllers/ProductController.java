@@ -44,10 +44,14 @@ public class ProductController {
         return "product/show";
     }
 
-    @RequestMapping("product/edit/{id}")
-    public String edit(@PathVariable String id, Model model){
-        Product product = productService.getById(Long.valueOf(id));
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/edit/{product_id}")
+    public String editProduct(@PathVariable(name = "product_id") String product_id,
+                              @PathVariable(name = "restaurant_id") String restaurant_id,
+                              Model model){
+        Product product = productService.getById(Long.valueOf(product_id));
+        model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("productForm", product);
+        model.addAttribute("productFeatureForm", product.getProductFeature());
         return "product/productform";
     }
 

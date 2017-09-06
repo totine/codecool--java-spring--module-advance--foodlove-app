@@ -40,6 +40,17 @@ public class PromotionController {
         return "promotion/promotionDetails";
     }
 
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/edit/{promotion_id}")
+    public String editPromotion(@PathVariable(name = "promotion_id") String promotion_id,
+                                @PathVariable(name = "restaurant_id") String restaurant_id,
+                                Model model){
+        Promotion promotion = promotionService.getById(Long.valueOf(promotion_id));
+        model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
+        model.addAttribute("promotionForm", promotion);
+        model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
+        return "promotion/createPromotionForm";
+    }
+
 
     @GetMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/add")
     public String createPromotion(@PathVariable(name = "restaurant_id") String restaurant_id, Model model){
