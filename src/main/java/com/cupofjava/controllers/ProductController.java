@@ -62,7 +62,7 @@ public class ProductController {
 
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/", method = RequestMethod.POST)
     public String saveOrUpdateProduct(@Valid Product product, ProductFeature productFeature, BindingResult bindingResult,
-                                      @PathVariable(name = "restaurant_id") String restaurant_id){
+                                      @PathVariable(name = "restaurant_id") String restaurant_id) {
         if(bindingResult.hasErrors()){
             return "product/productform";
         }
@@ -70,9 +70,9 @@ public class ProductController {
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/" + product.getId();
     }
 
-    @RequestMapping("/restaurators/{id}/restaurants/{id}/products/delete/{id}")
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/delete/{id}")
     public String delete(@PathVariable String id){
         productService.delete(Long.valueOf(id));
-        return "redirect:/restaurators/{id}/restaurants/{id}/products/";
+        return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/";
     }
 }

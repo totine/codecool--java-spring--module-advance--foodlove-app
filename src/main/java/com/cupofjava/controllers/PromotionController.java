@@ -75,9 +75,9 @@ public class PromotionController {
         return "promotion/show";
     }
 
-    @RequestMapping("/restaurators/{id}/restaurants/{id}/promotions/delete/{id}")
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/delete/{id}")
     public String delete(@PathVariable String id){
         promotionService.delete(Long.valueOf(id));
-        return "redirect:/restaurators/{id}/restaurants/{id}/promotions/";
+        return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/";
     }
 }
