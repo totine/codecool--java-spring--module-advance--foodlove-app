@@ -39,32 +39,8 @@
         </div>
 
         <div class="sidebar-wrapper">
-            <ul class="nav">
-                <li class="active">
-                    <a href="/">
-                        <p>Promotions</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="base.html">
-                        <p>Add new promotion</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="base.html">
-                        <p>Products</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="base.html">
-                        <p>Add new product</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="base.html">
-                        <p>Back to restaurator dashboard</p>
-                    </a>
-                </li>
+            <ul th:replace="dashboard/restaurantNav :: nav">
+                <li>menu</li>
             </ul>
         </div>
     </div>
