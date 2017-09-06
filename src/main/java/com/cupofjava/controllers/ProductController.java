@@ -34,7 +34,7 @@ public class ProductController {
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
         model.addAttribute("productsFeatures", productFeatureService.listAll());
-        return "product/list";
+        return "dashboard/restaurant-products";
     }
 
     @RequestMapping("restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/{id}")
