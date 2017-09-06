@@ -60,7 +60,8 @@
                             <td th:text="${product.price}"></td>
                             <td><a th:href="${'/product/show/' + product.id}">View</a> </td>
                             <td><a th:href="${'/product/edit/' + product.id}">Edit</a> </td>
-                            <td><a th:href="${'/restaurators/{id}/restaurants/{id}/products/delete/' + product.id}">Delete</a> </td>
+
+                            <td><a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/products/delete/' + product.id}">Delete</a> </td>
                             <td>
                                 <div th:if="${not #lists.isEmpty(productsFeatures)}">
                                     <table class="table table-striped">
