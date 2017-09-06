@@ -48,7 +48,7 @@ public class PromotionController {
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("promotionForm", promotion);
         model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
-        return "promotion/createPromotionForm";
+        return "dashboard/restaurant-promotion-add";
     }
 
 
@@ -57,7 +57,7 @@ public class PromotionController {
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
         model.addAttribute("promotionForm", new Promotion());
-        return "promotion/createPromotionForm";
+        return "dashboard/restaurant-promotion-add";
     }
 
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/", method = RequestMethod.GET)
@@ -85,7 +85,7 @@ public class PromotionController {
                                 @PathVariable(name = "promotion_id") String promotion_id,Model model){
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("promotion", promotionService.getById(Long.valueOf(promotion_id)));
-        return "promotion/show";
+        return "dashboard/restaurant-promotion-show";
     }
 
     @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/delete/{id}")
@@ -93,11 +93,11 @@ public class PromotionController {
         promotionService.delete(Long.valueOf(id));
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/";
     }
-    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/edit/{id}")
-    public String edit(@PathVariable(name = "id") String id, @PathVariable(name = "restaurant_id") String restaurant_id, Model model){
-        model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
-        model.addAttribute("promotionForm", promotionService.getById(Long.valueOf(id)));
-        return "promotion/createPromotionForm";
-
-    }
+//    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/edit/{id}")
+//    public String edit(@PathVariable(name = "id") String id, @PathVariable(name = "restaurant_id") String restaurant_id, Model model){
+//        model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
+//        model.addAttribute("promotionForm", promotionService.getById(Long.valueOf(id)));
+//        return "dashboard/restaurant-promotion-add";
+//
+//    }
 }
