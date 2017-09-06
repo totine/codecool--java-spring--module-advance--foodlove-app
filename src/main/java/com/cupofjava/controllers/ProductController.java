@@ -60,7 +60,7 @@ public class ProductController {
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("productForm", new Product());
         model.addAttribute("productFeatureForm", new ProductFeature());
-        return "product/productform";
+        return "dashboard/restaurant-product-add";
     }
 
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/", method = RequestMethod.POST)
