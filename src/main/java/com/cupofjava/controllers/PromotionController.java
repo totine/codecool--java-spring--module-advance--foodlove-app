@@ -64,7 +64,7 @@ public class PromotionController {
     public String promotionList(@PathVariable(name = "restaurant_id") String restaurant_id, Model model){
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("promotions", restaurantService.getById(Long.valueOf(restaurant_id)).getPromotions());
-        return "promotion/list";
+        return "dashboard/restaurant-promotions";
     }
 
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/", method = RequestMethod.POST)

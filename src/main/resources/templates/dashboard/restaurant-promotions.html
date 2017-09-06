@@ -82,30 +82,58 @@
             <div class="container-fluid">
 
                 <div class="row">
-                    <div class="col-md-4" th:each="restaurant : ${restaurantList}">
-                        <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/' + restaurant.id}">
-                            <div class="card">
-                                <div class="card-header card-chart" data-background-color="green">
-                                    <div class="ct-chart"><img th:src="${restaurant.imgUrl}"/></div>
-                                </div>
-                                <div class="card-content">
-                                    <h4 class="title" th:text="${restaurant.name}">Restaurant name</h4>
-                                    <p class="category"><span class="text-success"><i class="fa"></i> 3  </span>
-                                        active promotions</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div th:text="${restaurant.address}">
-                                        adres
-                                    </div>
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Promotions</h4>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                    <tr th:each="promotion : ${promotions}">
+                                        <td><img class="group list-group-image"
+                                                 src="http://placehold.it/150x150/000/fff"
+                                                 th:attr="src='/img/promotion.jpg'" alt="" th:width="150"/></td>
+                                        <td th:text="${promotion.id}"></td>
+                                        <td th:text="${promotion.product.description}"></td>
+                                        <td th:text="${promotion.promotionalPrice}"></td>
+                                        <td th:text="${promotion.dateFrom}"></td>
+                                        <td th:text="${promotion.dateTo}"></td>
+                                        <td><a th:href="${'/promotions/show/' + promotion.id}">View</a></td>
+                                        <td>
+                                            <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/edit/' + promotion.id}">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/delete/' + promotion.id}">Delete</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="col-md-4" th:each="restaurant : ${restaurantList}">
+                                    <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/' + restaurant.id}">
+                                        <div class="card">
+                                            <div class="card-header card-chart" data-background-color="green">
+                                                <div class="ct-chart"><img th:src="${restaurant.imgUrl}"/></div>
+                                            </div>
+                                            <div class="card-content">
+                                                <h4 class="title" th:text="${restaurant.name}">Restaurant name</h4>
+                                                <p class="category"><span class="text-success"><i
+                                                        class="fa"></i> 3  </span>
+                                                    active promotions</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div th:text="${restaurant.address}">
+                                                    adres
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     </div>
-
-
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -143,6 +171,7 @@
         </div>
     </footer>
 </div>
+
 
 <!--   Core JS Files   -->
 <script src="../assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
