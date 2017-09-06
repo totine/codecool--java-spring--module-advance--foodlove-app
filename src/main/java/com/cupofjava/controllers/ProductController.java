@@ -29,9 +29,8 @@ public class ProductController {
         this.restaurantService = restaurantService;
     }
 
-    @RequestMapping("restaurators/{id}/restaurants/{restaurant_id}/products/")
+    @RequestMapping("restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/")
     public String listProducts(Model model, @PathVariable(name = "restaurant_id") String restaurant_id){
-        System.out.println(restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
         model.addAttribute("productsFeatures", productFeatureService.listAll());
@@ -62,7 +61,7 @@ public class ProductController {
 
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/", method = RequestMethod.POST)
     public String saveOrUpdateProduct(@Valid Product product, ProductFeature productFeature, BindingResult bindingResult,
-                                      @PathVariable(name = "restaurant_id") String restaurant_id) {
+                                      @PathVariable(name = "restaurant_id") String restaurant_id){
         if(bindingResult.hasErrors()){
             return "product/productform";
         }
@@ -70,9 +69,12 @@ public class ProductController {
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/" + product.getId();
     }
 
-    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/delete/{id}")
-    public String delete(@PathVariable String id){
-        productService.delete(Long.valueOf(id));
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/delete/{product_id}")
+    public String delete(@PathVariable(name = "restaurant_id") String restaurant_id,
+                         @PathVariable(name = "product_id") String product_id){
+        restaurantService.getById(Long.valueOf(restaurant_id)).getProducts()
+                .remove(productService.getById(Long.valueOf(product_id)));
+        productService.delete(Long.valueOf(product_id));
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/";
     }
 }
