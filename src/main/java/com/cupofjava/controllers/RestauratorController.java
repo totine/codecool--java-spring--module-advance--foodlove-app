@@ -70,6 +70,7 @@ public class RestauratorController{
         List<Restaurant> restaurantList = new ArrayList<>();
         restaurantList.addAll(restauratorService.getById(Long.valueOf(id)).getRestaurants());
         model.addAttribute("restaurantList", restaurantList);
-        return "restaurator/restauratorPanel";
+     //   return "restaurator/restauratorPanel";
+        return "/dashboard/base";
     }
 }

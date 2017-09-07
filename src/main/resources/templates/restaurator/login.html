@@ -1,27 +1,86 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Logowanie do panelu restauratora</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/mdb/css/bootstrap.min.css}" rel="stylesheet"/>
+
+    <!-- Material Design Bootstrap -->
+    <link th:href="@{/mdb/css/mdb.min.css}" rel="stylesheet"/>
+    <title>Login page for restaurators</title>
 </head>
 <body>
-<h1>To jest strona z logowaniem do panelu restauratora (NIE PANELU RESTAURACJI!)</h1>
-<h2>Docelowo powinna zawierać panel logowania/ rejestracji/ ale to nie w tym sprincie/ teraz powinien byc po prostu
-wybór na którego restauratora chcemy wejść</h2>
+<div class="container">
+    <div class="row">
+        <div class="col">
 
 
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Image</th>
-    </tr>
-    <tr th:each="restaurator : ${restaurators}">
-        <td th:text="${restaurator.id}"></td>
-        <td><a th:href="${'/restaurators/' + restaurator.id}" th:text="${restaurator.name}"></a></td>
-        <td> <img th:src="${restaurator.imgUrl}" height="150"/></td>
-    </tr>
-</table><br/><br/><br/>
+            <div class="card" style="width: 28rem;">
+                <div class="card-body">
 
-<a href="/">Powrót do widoku promocji (dla klienta)(Strona głowna)</a>
+                    <!--Header-->
+                    <div class="form-header default-color">
+                        <h3><i class="fa fa-lock"></i> Login:</h3>
+                    </div>
+
+                    <!--Body-->
+                    <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="text" id="defaultForm-email" class="form-control"/>
+                        <label for="defaultForm-email">Your email</label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fa fa-lock prefix grey-text"></i>
+                        <input type="password" id="defaultForm-pass" class="form-control"/>
+                        <label for="defaultForm-pass">Your password</label>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-default">Login</button>
+                    </div>
+
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer">
+                    <div class="options">
+                        <p>Not a member? <a href="#">Sign Up</a></p>
+                        <p>Forgot <a href="#">Password?</a></p>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table-hover">
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                        </tr>
+                        <tr th:each="restaurator : ${restaurators}">
+                            <td th:text="${restaurator.id}"></td>
+                            <td><a th:href="${'/restaurators/' + restaurator.id}" th:text="${restaurator.name}"></a>
+                            </td>
+                            <td><img th:src="${restaurator.imgUrl}" height="150"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col"><a href="/">Back to Home Page</a></div>
+</div>
+
+
+
 </body>
 </html>
