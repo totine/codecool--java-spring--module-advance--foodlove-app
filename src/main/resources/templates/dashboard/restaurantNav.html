@@ -1,0 +1,31 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<ul class="nav" th:fragment="nav">
+    <li>
+        <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/'}">
+            <p>Promotions</p>
+        </a>
+    </li>
+    <li>
+        <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/add'}">
+            <p>Add new promotion</p>
+        </a>
+    </li>
+    <li>
+        <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/products/'}">
+            <p>Products</p>
+        </a>
+    </li>
+    <li>
+        <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/products/add'}">
+            <p>Add new product</p>
+        </a>
+    </li>
+    <li>
+        <a th:href="${'/restaurators/'+restaurant.restaurator.id}">
+            <p>Back to restaurator dashboard</p>
+        </a>
+    </li>
+</ul>
+</html>

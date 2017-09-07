@@ -86,7 +86,7 @@ p {
     color: #1D2C37;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     line-height: 1.9;
     transition: all .5s ease-in;
 }
@@ -161,13 +161,12 @@ ul a:link, ul a:visited {
 
 .contact-form
 {
-    background-color: #808080;
+    background-color: white;
     border: solid 1px #a1a1a1;
     border-style: dotted;
     width: 500px;
     position:fixed;
-    margin-right: 20px;
-    margin-left: 650px;
+    margin-left: 20px;
 }
 
 .contact-form-button {
@@ -204,7 +203,6 @@ ul a:link, ul a:visited {
     margin-left:-200px;
     width:400px;
     color: firebrick;
-    font-color: red;
     font-family: Montserrat, sans-serif;
 
 }

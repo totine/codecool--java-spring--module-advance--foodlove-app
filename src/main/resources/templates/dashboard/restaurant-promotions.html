@@ -1,0 +1,201 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"/>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>Restaurant</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <!-- Bootstrap core CSS     -->
+    <link th:href="@{/dashboard/css/bootstrap.min.css}" href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!--  Material Dashboard CSS    -->
+    <link th:href="@{/dashboard/css/material-dashboard.css}" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet'
+          type='text/css'/>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+        <!--
+            Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+            Tip 2: you can also add an image using data-image tag
+        -->
+
+        <div class="logo">
+            <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/'}"
+               class="simple-text">
+                FoodLove
+            </a>
+            <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/'}"
+               th:text="${restaurant.name}"
+               class="simple-text">
+                FoodLove
+            </a>
+        </div>
+
+        <div class="sidebar-wrapper">
+            <ul th:replace="dashboard/restaurantNav :: nav">
+                <li>menu</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-transparent navbar-absolute">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Restaurant Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons">dashboard</i>
+                                <p class="hidden-lg hidden-md">Dashboard</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Promotions</h4>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                    <tr th:each="promotion : ${promotions}">
+                                        <td><img class="group list-group-image"
+                                                 src="http://placehold.it/150x150/000/fff"
+                                                 th:attr="src='/img/promotion.jpg'" alt="" th:width="150"/></td>
+                                        <td th:text="${promotion.id}"></td>
+                                        <td th:text="${promotion.product.description}"></td>
+                                        <td th:text="${promotion.promotionalPrice}"></td>
+                                        <td th:text="${promotion.dateFrom}"></td>
+                                        <td th:text="${promotion.dateTo}"></td>
+                                        <td><a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/' + promotion.id}">View</a></td>
+                                        <td>
+                                            <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/edit/' + promotion.id}">Edit</a>
+                                        </td>
+                                        <td>
+                                            <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/delete/' + promotion.id}">Delete</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="col-md-4" th:each="restaurant : ${restaurantList}">
+                                    <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/' + restaurant.id}">
+                                        <div class="card">
+                                            <div class="card-header card-chart" data-background-color="green">
+                                                <div class="ct-chart"><img th:src="${restaurant.imgUrl}"/></div>
+                                            </div>
+                                            <div class="card-content">
+                                                <h4 class="title" th:text="${restaurant.name}">Restaurant name</h4>
+                                                <p class="category"><span class="text-success"><i
+                                                        class="fa"></i> 3  </span>
+                                                    active promotions</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div th:text="${restaurant.address}">
+                                                    adres
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="pull-left">
+                <ul>
+                    <li>
+                        <a href="#">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Company
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Portfolio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Blog
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <p class="copyright pull-right">
+                &copy;
+                <script>document.write(new Date().getFullYear())</script>
+                <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+            </p>
+        </div>
+    </footer>
+</div>
+
+
+<!--   Core JS Files   -->
+<script src="../assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/js/material.min.js" type="text/javascript"></script>
+
+<!--  Charts Plugin -->
+<script th:src="@{/dashboard/js/chartist.min.js}"></script>
+
+<!--  Notifications Plugin    -->
+<script th:src="@{/dashboard/js/bootstrap-notify.js}"></script>
+
+
+<!-- Material Dashboard javascript methods -->
+<script th:src="@{/dashboard/js/material-dashboard.js}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+</body>
+
+</html>
