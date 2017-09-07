@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/mdb/css/bootstrap.min.css}" rel="stylesheet"/>
+
+    <!-- Material Design Bootstrap -->
+    <link th:href="@{/mdb/css/mdb.min.css}" rel="stylesheet"/>
+    <title>Login page for restaurators</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+
+            <div class="card" style="width: 28rem;">
+                <div class="card-body">
+
+                    <!--Header-->
+                    <div class="form-header default-color">
+                        <h3><i class="fa fa-lock"></i> Login:</h3>
+                    </div>
+
+                    <!--Body-->
+                    <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="text" id="defaultForm-email" class="form-control"/>
+                        <label for="defaultForm-email">Your email</label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fa fa-lock prefix grey-text"></i>
+                        <input type="password" id="defaultForm-pass" class="form-control"/>
+                        <label for="defaultForm-pass">Your password</label>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-default">Login</button>
+                    </div>
+
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer">
+                    <div class="options">
+                        <p>Not a member? <a href="#">Sign Up</a></p>
+                        <p>Forgot <a href="#">Password?</a></p>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table-hover">
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                        </tr>
+                        <tr th:each="restaurator : ${restaurators}">
+                            <td th:text="${restaurator.id}"></td>
+                            <td><a th:href="${'/restaurators/' + restaurator.id}" th:text="${restaurator.name}"></a>
+                            </td>
+                            <td><img th:src="${restaurator.imgUrl}" height="150"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col"><a href="/">Back to Home Page</a></div>
+</div>
+
+
+
+</body>
+</html>

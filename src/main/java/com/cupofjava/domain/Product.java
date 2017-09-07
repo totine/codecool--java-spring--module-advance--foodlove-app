@@ -2,29 +2,34 @@ package com.cupofjava.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 
 @Entity
-@Table(name = "product")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long _id;
+    private Long id;
     private String description;
     private BigDecimal price;
     private String imageUrl;
     @OneToOne
-    @JoinColumn(name = "product_feature_id")
+    @JoinColumn(name = "product_features_id")
     private ProductFeature productFeature;
-
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+    @OneToMany
+    @JoinColumn(name = "promotion_id")
+    private Set<Promotion> promotions;
 
     public Long getId() {
-        return _id;
+        return id;
     }
 
     public void setId(Long id) {
-        this._id = id;
+        this.id = id;
     }
 
     public String getDescription() {
@@ -57,5 +62,21 @@ public class Product {
 
     public void setProductFeature(ProductFeature productFeature) {
         this.productFeature = productFeature;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public Set<Promotion> getPromotions() {
+        return promotions;
+    }
+
+    public void setPromotions(Set<Promotion> promotions) {
+        this.promotions = promotions;
     }
 }

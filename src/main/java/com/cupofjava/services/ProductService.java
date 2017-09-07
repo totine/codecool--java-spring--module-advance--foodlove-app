@@ -1,6 +1,7 @@
 package com.cupofjava.services;
 
 import com.cupofjava.domain.Product;
+import com.cupofjava.domain.ProductFeature;
 
 
 import java.util.List;
@@ -15,6 +16,6 @@ public interface ProductService {
 
     void delete(Long id);
 
-    Product saveOrUpdateProduct(Product product);
+    void saveProductData(Product product, ProductFeature productFeature, Long restaurant_id);
 }
 
