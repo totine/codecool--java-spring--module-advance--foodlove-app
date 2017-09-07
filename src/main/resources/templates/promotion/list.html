@@ -62,9 +62,9 @@
                     <td th:text="${promotion.promotionalPrice}"></td>
                     <td th:text="${promotion.dateFrom}"></td>
                     <td th:text="${promotion.dateTo}"></td>
-                    <td><a th:href="${'/product/show/' + promotion.id}">View</a> </td>
-                    <td><a th:href="${'/product/edit/' + promotion.id}">Edit</a> </td>
-                    <td><a th:href="${'/product/delete/' + promotion.id}">Delete</a> </td>
+                    <td><a th:href="${'/promotions/show/' + promotion.id}">View</a> </td>
+                    <td><a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/edit/' + promotion.id}">Edit</a> </td>
+                    <td><a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/promotions/delete/' + promotion.id}">Delete</a> </td>
                 </tr>
             </table>
         </div>

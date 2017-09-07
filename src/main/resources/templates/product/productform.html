@@ -39,7 +39,7 @@
         </td>
         <td valign="top"><br/>
             <div>
-                <form class="form-horizontal" th:object="${productForm}" th:action="${'/restaurators/'+ restaurator_id +'/restaurants/'+restaurant_id+'/products/'}" method="post">
+                <form class="form-horizontal" th:object="${productForm}" th:action="${'/restaurators/'+ restaurant.restaurator.id +'/restaurants/'+restaurant.id+'/products/'}" method="post">
 
                     <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
                         <p th:text="#{form.hasErrors}">Error Message</p>k

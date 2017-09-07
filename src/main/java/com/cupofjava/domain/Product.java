@@ -2,10 +2,10 @@ package com.cupofjava.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 
 @Entity
-@Table(name = "products")
 public class Product {
 
     @Id
@@ -17,7 +17,12 @@ public class Product {
     @OneToOne
     @JoinColumn(name = "product_features_id")
     private ProductFeature productFeature;
-
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+    @OneToMany
+    @JoinColumn(name = "promotion_id")
+    private Set<Promotion> promotions;
 
     public Long getId() {
         return id;
@@ -57,5 +62,21 @@ public class Product {
 
     public void setProductFeature(ProductFeature productFeature) {
         this.productFeature = productFeature;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public Set<Promotion> getPromotions() {
+        return promotions;
+    }
+
+    public void setPromotions(Set<Promotion> promotions) {
+        this.promotions = promotions;
     }
 }

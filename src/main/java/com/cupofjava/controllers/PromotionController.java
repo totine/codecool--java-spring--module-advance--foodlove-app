@@ -2,8 +2,6 @@ package com.cupofjava.controllers;
 
 import com.cupofjava.domain.Product;
 import com.cupofjava.domain.Promotion;
-import com.cupofjava.domain.Restaurant;
-import com.cupofjava.services.ProductService;
 import com.cupofjava.services.PromotionService;
 import com.cupofjava.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +21,11 @@ public class PromotionController {
 
     private RestaurantService restaurantService;
     private PromotionService promotionService;
-    private ProductService productService;
 
     @Autowired
-    public PromotionController(RestaurantService restaurantService, PromotionService promotionService, ProductService productService) {
+    public PromotionController(RestaurantService restaurantService, PromotionService promotionService) {
         this.restaurantService = restaurantService;
         this.promotionService = promotionService;
-        this.productService = productService;
     }
 
 
@@ -44,12 +40,20 @@ public class PromotionController {
         return "promotion/promotionDetails";
     }
 
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/edit/{promotion_id}")
+    public String editPromotion(@PathVariable(name = "promotion_id") String promotion_id,
+                                @PathVariable(name = "restaurant_id") String restaurant_id,
+                                Model model){
+        Promotion promotion = promotionService.getById(Long.valueOf(promotion_id));
+        model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
+        model.addAttribute("promotionForm", promotion);
+        model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
+        return "promotion/createPromotionForm";
+    }
+
 
     @GetMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/add")
-    public String createPromotion(@PathVariable(name = "restaurant_id") String restaurant_id,
-                                  @PathVariable(name = "restaurator_id") String restaurator_id,Model model){
-        model.addAttribute("restaurator_id", restaurator_id);
-        model.addAttribute("restaurant_id", restaurant_id);
+    public String createPromotion(@PathVariable(name = "restaurant_id") String restaurant_id, Model model){
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
         model.addAttribute("promotionForm", new Promotion());
@@ -57,10 +61,7 @@ public class PromotionController {
     }
 
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/", method = RequestMethod.GET)
-    public String promotionList(@PathVariable(name = "restaurant_id") String restaurant_id,
-                                @PathVariable(name = "restaurator_id") String restaurator_id,Model model){
-        model.addAttribute("restaurator_id", restaurator_id);
-        model.addAttribute("restaurant_id", restaurant_id);
+    public String promotionList(@PathVariable(name = "restaurant_id") String restaurant_id, Model model){
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("promotions", restaurantService.getById(Long.valueOf(restaurant_id)).getPromotions());
         return "promotion/list";
@@ -68,30 +69,35 @@ public class PromotionController {
 
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/", method = RequestMethod.POST)
     public String promotionList(@Valid Promotion promotion, BindingResult bindingResult,
-            @PathVariable(name = "restaurant_id") String restaurant_id, Model model){
+                                @PathVariable(name = "restaurant_id") String restaurant_id, Model model){
         if(bindingResult.hasErrors()){
             System.out.println(bindingResult.getModel());
             return "errors/error";
         }
-        Long productId =  promotion.getProductId();
-        promotion.setProduct(productService.getById(productId));
-        Promotion savedPromotion = promotionService.saveOrUpdate(promotion);
-        Restaurant restaurant = restaurantService.getById(Long.valueOf(restaurant_id));
-        restaurant.getPromotions().add(promotion);
+        System.out.println(promotion + "opis produktu");
+        promotionService.savePromotionData(promotion, Long.valueOf(restaurant_id));
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
-        return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/" + savedPromotion.getId();
+        return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/" + promotion.getId();
 
     }
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/{promotion_id}")
     public String viewPromotion(@PathVariable(name = "restaurant_id") String restaurant_id,
-                                @PathVariable(name = "restaurator_id") String restaurator_id,
                                 @PathVariable(name = "promotion_id") String promotion_id,Model model){
-        model.addAttribute("restaurator_id", restaurator_id);
-        model.addAttribute("restaurant_id", restaurant_id);
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("promotion", promotionService.getById(Long.valueOf(promotion_id)));
         return "promotion/show";
     }
 
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/delete/{id}")
+    public String delete(@PathVariable String id){
+        promotionService.delete(Long.valueOf(id));
+        return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/";
+    }
+    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/edit/{id}")
+    public String edit(@PathVariable(name = "id") String id, @PathVariable(name = "restaurant_id") String restaurant_id, Model model){
+        model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
+        model.addAttribute("promotionForm", promotionService.getById(Long.valueOf(id)));
+        return "promotion/createPromotionForm";
 
+    }
 }

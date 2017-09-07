@@ -1,6 +1,8 @@
 package com.cupofjava.services;
 
 import com.cupofjava.domain.Product;
+import com.cupofjava.domain.ProductFeature;
+import com.cupofjava.domain.Restaurant;
 import com.cupofjava.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +14,16 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
+    private ProductFeatureService productFeatureService;
+    private RestaurantService restaurantService;
 
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, ProductFeatureService productFeatureService,
+                              RestaurantService restaurantService) {
         this.productRepository = productRepository;
+        this.productFeatureService = productFeatureService;
+        this.restaurantService = restaurantService;
     }
 
     @Override
@@ -42,10 +49,15 @@ public class ProductServiceImpl implements ProductService {
         productRepository.delete(id);
     }
 
-    @Override ///metoda prawdopodobnie do usunięcia
-    public Product saveOrUpdateProduct(Product product) {
-        Product savedProduct = saveOrUpdate(product);
-        System.out.println("Saved Product Id: " + savedProduct.getId());
-        return savedProduct;
+    @Override
+    public void saveProductData(Product product, ProductFeature productFeature, Long restaurant_id) {
+        ProductFeature savedProductFeature = productFeatureService.saveOrUpdateProductFeature(productFeature);
+        Product savedProduct = this.saveOrUpdate(product);
+        savedProduct.setProductFeature(savedProductFeature);
+        savedProduct.setRestaurant(restaurantService.getById(restaurant_id));
+        savedProductFeature.setProduct(savedProduct);
+        Restaurant restaurant = restaurantService.getById(restaurant_id);
+        restaurant.getProducts().add(savedProduct);
+        restaurantService.saveOrUpdate(restaurant);
     }
 }
