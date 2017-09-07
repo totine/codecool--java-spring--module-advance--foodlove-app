@@ -98,15 +98,19 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="md-form">
-                                            <input placeholder="Selected date" type="text" id="date-picker-example" th:field="*{dateFrom}" class="form-control datepicker" />
+                                            <input placeholder="Selected date" type="date" id="date-picker-example" th:field="*{dateFrom}" class="form-control datepicker" />
                                             <label for="date-picker-example">Date From:</label>
                                         </div>
-                                        <!--<label>Date From:</label> <input type="date" th:field="*{dateFrom}" />-->
+                                        <div class="md-form">
+                                            <input placeholder="Selected date" type="date" id="date-picker-example" th:field="*{dateTo}" class="form-control datepicker" />
+                                            <label for="date-picker-example">Date To:</label>
+                                        </div>
                                     </div>
-                                    <p>Date To: <input type="date" th:field="*{dateTo}" /></p>
-                                    <p>discount: <input type="number" th:field="*{discount}" /></p>
-                                    <p>promotionalPrice: <input type="number" th:field="*{promotionalPrice}" /></p>
-                                    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+                                    <div class="form-group">
+                                    <label>discount:</label> <input type="number" th:field="*{discount}" />
+                                        <label>promotionalPrice:</label> <input type="number" th:field="*{promotionalPrice}" />
+                                    </div>
+                                        <div><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></div>
                                 </form>
                             </div>
                         </div>
@@ -133,15 +137,22 @@
 <!-- Material Dashboard javascript methods -->
 <script th:src="@{/dashboard/js/material-dashboard.js}"></script>
 
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" th:src="@{/mdb/js/js/bootstrap.min.js}"></script>
+
+<!-- MDB core JavaScript -->
+<script type="text/javascript" th:src="@{/mdb/js/js/mdb.min.js}"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
 
         // Javascript method's body can be found in assets/js/demos.js
         demo.initDashboardPageCharts();
+        $('.datepicker').pickadate();
 
     });
 </script>
-<script>$('.datepicker').pickadate();</script>
+
 </body>
 
 </html>
