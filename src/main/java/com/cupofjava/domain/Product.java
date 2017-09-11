@@ -11,6 +11,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
     private String description;
     private BigDecimal price;
     private String imageUrl;
@@ -23,6 +24,14 @@ public class Product {
     @OneToMany
     @JoinColumn(name = "promotion_id")
     private Set<Promotion> promotions;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

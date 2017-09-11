@@ -93,6 +93,7 @@
                                     <tr th:each="product : ${products}">
                                         <td><img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${product.id} + '.jpg'" alt="" /></td>
                                         <td th:text="${product.id}"></td>
+                                        <td th:text="${product.name}"></td>
                                         <td th:text="${product.description}"></td>
                                         <td th:text="${product.price}"></td>
                                         <td><a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/'+restaurant.id+'/products/' + product.id}">View</a> </td>
