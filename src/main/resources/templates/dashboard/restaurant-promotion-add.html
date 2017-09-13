@@ -89,7 +89,6 @@
                             </div>
                             <div class="card-content table-responsive">
                                 <form action="#" th:action="${'/restaurators/'+ restaurant.restaurator.id +'/restaurants/'+restaurant.id+'/promotions/'}" th:object="${promotionForm}" method="post">
-                                    <!--<p>Id: <input type="hidden" th:field="*{id}" /></p>-->
                                     <div class="form-group">
                                         <select th:field="*{product}"  id="dropOperator">
                                             <option value="0"> Choose product </option>
