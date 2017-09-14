@@ -58,3 +58,11 @@ footer.page-footer {
 .product-name {
     margin-top: 0.6rem;
 }
+
+.page-item.active .page-link {
+    z-index: 2;
+    color: #fff;
+    background-color: #a1887f;
+    border-color: #a1887f;
+}
+

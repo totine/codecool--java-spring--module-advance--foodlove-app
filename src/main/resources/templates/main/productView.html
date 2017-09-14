@@ -8,7 +8,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <link rel="shortcut icon" th:href="@{/mdb/img/logo/favicon1.jpg}" type="image/x-icon"/>
 
-    <title>Material Design Bootstrap</title>
+    <title>FoodLove App</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css" />
@@ -114,7 +114,19 @@
 
                     </div>
                     <!--/.Carousel Wrapper-->
-                </div>
+
+                    <!--<h1>test</h1>-->
+                    <div class="tags">
+                        <!--<strong>Tags:</strong><br />-->
+                        <br/>
+                        <span class="chip"><a class="badge grey" href="/search/tag/vegetarian/" title="Tag vegetarian" target="_self">vegetarian</a></span>
+                        <span class="chip"><a class="badge grey" href="/search/tag/dessert/" title="Tag dessert" target="_self">dessert</a></span>
+                        <span class="chip"><a class="badge grey" href="/search/tag/chocolate/" title="Tag dessert" target="_self">chocolate</a></span>
+                    </div>
+
+
+
+            </div>
                 <!-- /.First column -->
 
                 <!-- Second column -->
@@ -205,24 +217,26 @@
                     <!-- Add to Cart -->
 
                     <div class="card-block">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="md-form">
-                                    <select class="mdb-select">
-                                        <option value="" disabled="" selected="">Quantity</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
+
+                        <div class="add-to-cart">
+                            <div class="to-cart-products">
+                                <strong>Quantity:</strong>
+                                <select id="product-quantity" name="quantity">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
                             </div>
+                            <button class="btn btn-brown"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Book now</button>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12 center-on-small-only text-md-right">
-                                <span class="green-text">Product available</span>
-                                <button class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i>Book now</button>
-                            </div>
-                        </div>
+
                     </div>
 
                     <!-- /.Add to Cart -->
@@ -612,7 +626,7 @@
                                         <span class="left">129$</span>
                                         <span class="right">
                                                 <a class="" data-toggle="tooltip" data-placement="top" title="Quick Look"><i class="fa fa-eye"></i></a>
-                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                                <a class="" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><i class="fa fa-reddit-alien"></i></a>
                                             </span>
                                     </div>
 
