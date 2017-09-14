@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <link rel="shortcut icon" th:href="@{/mdb/img/logo/favicon.jpg}" type="image/x-icon"/>
 
     <title>Material Design Bootstrap</title>
 
@@ -20,19 +21,7 @@
 
     <link th:href="@{/mdb/css/style.css}" href="../MDB-Free/css/style.css" type="text/css" rel="stylesheet"/>
 
-    <style type="text/css">
-        .product-name {
-            margin-top: 0.6rem;
-        }
-
-        .product-accordion {
-        @media (min-width: 768px) {
-            .panel {
-                padding-left: 0;
-            }
-        }
-        }
-    </style>
+    <link th:href="@{/mdb/css/style.css}" type="text/css" rel="stylesheet"/>
 
 </head>
 
@@ -47,7 +36,7 @@
         <!--Navbar-->
         <nav class="navbar navbar-expand-lg navbar-inverse navbar-dark navbar-fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#"><img th:src="@{/mdb/img/svg/logo.png}" height="150" /></a>
+                <a class="navbar-brand" href="#"><img th:src="@{/mdb/img/logo/foodlove-02.svg}" height="150" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -74,7 +63,7 @@
                     </ul>
                     <div>
                         <!--Blue-grey-->
-                        <a href="#" class="btn btn-blue-grey btn-lg">Space for restaurants</a>
+                        <a href="#" class="btn btn-brown btn-lg">Space for restaurants</a>
                     </div>
                 </div>
             </div>
@@ -180,6 +169,7 @@
                                     <section id="contact">
                                         <div class="row">
                                             <!--First column-->
+                                            <!-- MAP Google -->
                                             <div class="col-md-8">
                                                 <div id="map-container" class="z-depth-1 wow fadeInUp" style="height: 300px"></div>
                                             </div>
@@ -259,16 +249,16 @@
 
                 <!--Controls-->
                 <div class="controls-top">
-                    <a class="btn-floating btn-small primary-color" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                    <a class="btn-floating btn-small primary-color" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                    <a class="btn-floating btn-small btn btn-brown" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                    <a class="btn-floating btn-small btn btn-brown" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
                 </div>
                 <!--/.Controls-->
 
                 <!--Indicators-->
                 <ol class="carousel-indicators">
-                    <li class="primary-color active" data-target="#multi-item-example" data-slide-to="0" ></li>
-                    <li class="primary-color" data-target="#multi-item-example" data-slide-to="1"></li>
-                    <li class="primary-color" data-target="#multi-item-example" data-slide-to="2"></li>
+                    <li class="btn-brown active" data-target="#multi-item-example" data-slide-to="0" ></li>
+                    <li class="btn-brown" data-target="#multi-item-example" data-slide-to="1"></li>
+                    <li class="btn-brown" data-target="#multi-item-example" data-slide-to="2"></li>
                 </ol>
                 <!--/.Indicators-->
 
@@ -285,7 +275,7 @@
 
                                 <!--Card image-->
                                 <div class="view overlay hm-white-slight">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img%20(42).jpg" class="img-fluid" alt="" />
+                                    <img th:src="@{/mdb/img/svg/10.jpeg}" class="img-fluid" alt="" />
                                     <a>
                                         <div class="mask waves-light"></div>
                                     </a>
@@ -294,9 +284,7 @@
 
                                 <!--Card content-->
                                 <div class="card-block text-center">
-                                    <!--Category & Title-->
-                                    <h5>Shoes</h5>
-                                    <h4 class="card-title"><strong><a href="">Black sneakers</a></strong></h4>
+                                    <h4 class="card-title"><strong><a href="">Yummy</a></strong></h4>
 
                                     <!--Description-->
                                     <p class="card-text">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates.
@@ -304,7 +292,7 @@
 
                                     <!--Card footer-->
                                     <div class="card-footer">
-                                        <span class="left">129$</span>
+                                        <span class="left">500$</span>
                                         <span class="right">
                                                 <a class="" data-toggle="tooltip" data-placement="top" title="Quick Look"><i class="fa fa-eye"></i></a>
                                                 <a class="" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
@@ -326,7 +314,7 @@
 
                                 <!--Card image-->
                                 <div class="view overlay hm-white-slight">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img%20(43).jpg" class="img-fluid" alt="" />
+                                    <img th:src="@{/mdb/img/svg/5.jpg}" class="img-fluid" alt="" />
                                     <a>
                                         <div class="mask waves-light"></div>
                                     </a>
@@ -335,9 +323,7 @@
 
                                 <!--Card content-->
                                 <div class="card-block text-center">
-                                    <!--Category & Title-->
-                                    <h5>Jumper</h5>
-                                    <h4 class="card-title"><strong><a href="">Black jumper</a></strong></h4>
+                                    <h4 class="card-title"><strong><a href="">Yummy yummy</a></strong></h4>
 
                                     <!--Description-->
                                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing minima veniam elit. Nam incidunt eius est voluptatibus.
@@ -367,8 +353,7 @@
 
                                 <!--Card image-->
                                 <div class="view overlay hm-white-slight">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img%20(44).jpg" class="img-fluid" alt="" />
-                                    <a>
+                                    <img th:src="@{/mdb/img/svg/6.jpeg}" class="img-fluid" alt="" />                                    <a>
                                         <div class="mask waves-light"></div>
                                     </a>
                                 </div>
@@ -376,9 +361,7 @@
 
                                 <!--Card content-->
                                 <div class="card-block text-center">
-                                    <!--Category & Title-->
-                                    <h5>Suits</h5>
-                                    <h4 class="card-title"><strong><a href="">Blue suit</a></strong></h4>
+                                    <h4 class="card-title"><strong><a href="">Om nom nom</a></strong></h4>
 
                                     <!--Description-->
                                     <p class="card-text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur adipisci sed velit.
@@ -414,8 +397,7 @@
 
                                 <!--Card image-->
                                 <div class="view overlay hm-white-slight">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img%20(45).jpg" class="img-fluid" alt="" />
-                                    <a>
+                                    <img th:src="@{/mdb/img/svg/7.jpg}" class="img-fluid" alt="" />                                    <a>
                                         <div class="mask waves-light"></div>
                                     </a>
                                 </div>
@@ -423,9 +405,7 @@
 
                                 <!--Card content-->
                                 <div class="card-block text-center">
-                                    <!--Category & Title-->
-                                    <h5>Accessories</h5>
-                                    <h4 class="card-title"><strong><a href="">Silver watch</a></strong></h4>
+                                    <h4 class="card-title"><strong><a href="">Vegan gluten free</a></strong></h4>
 
                                     <!--Description-->
                                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing minima veniam elit. Nam incidunt eius est voluptatibus.
@@ -433,7 +413,7 @@
 
                                     <!--Card footer-->
                                     <div class="card-footer">
-                                        <span class="left">129$</span>
+                                        <span class="left">109$</span>
                                         <span class="right">
                                                 <a class="" data-toggle="tooltip" data-placement="top" title="Quick Look"><i class="fa fa-eye"></i></a>
                                                 <a class="" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
@@ -455,8 +435,7 @@
 
                                 <!--Card image-->
                                 <div class="view overlay hm-white-slight">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img%20(32).jpg" class="img-fluid" alt="" />
-                                    <a>
+                                    <img th:src="@{/mdb/img/svg/8.jpeg}" class="img-fluid" alt="" />                                    <a>
                                         <div class="mask waves-light"></div>
                                     </a>
                                 </div>
@@ -464,9 +443,7 @@
 
                                 <!--Card content-->
                                 <div class="card-block text-center">
-                                    <!--Category & Title-->
-                                    <h5>Accesories</h5>
-                                    <h4 class="card-title"><strong><a href="">Watch</a></strong></h4>
+                                    <h4 class="card-title"><strong><a href="">OMG XOXO</a></strong></h4>
 
                                     <!--Description-->
                                     <p class="card-text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur adipisci sed velit.
@@ -496,8 +473,7 @@
 
                                 <!--Card image-->
                                 <div class="view overlay hm-white-slight">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img%20(31).jpg" class="img-fluid" alt="" />
-                                    <a>
+                                    <img th:src="@{/mdb/img/svg/9.jpeg}" class="img-fluid" alt="" />                                    <a>
                                         <div class="mask waves-light"></div>
                                     </a>
                                 </div>
@@ -505,9 +481,7 @@
 
                                 <!--Card content-->
                                 <div class="card-block text-center">
-                                    <!--Category & Title-->
-                                    <h5>Tops</h5>
-                                    <h4 class="card-title"><strong><a href="">Pink top</a></strong></h4>
+                                    <h4 class="card-title"><strong><a href="">Really yum</a></strong></h4>
 
                                     <!--Description-->
                                     <p class="card-text">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates.
@@ -543,8 +517,7 @@
 
                                 <!--Card image-->
                                 <div class="view overlay hm-white-slight">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img%20(30).jpg" class="img-fluid" alt="" />
-                                    <a>
+                                    <img th:src="@{/mdb/img/svg/4.jpg}" class="img-fluid" alt="" />                                    <a>
                                         <div class="mask waves-light"></div>
                                     </a>
                                 </div>
@@ -552,9 +525,7 @@
 
                                 <!--Card content-->
                                 <div class="card-block text-center">
-                                    <!--Category & Title-->
-                                    <h5>Accessories</h5>
-                                    <h4 class="card-title"><strong><a href="">Brown Hat</a></strong></h4>
+                                    <h4 class="card-title"><strong><a href="">So good</a></strong></h4>
 
                                     <!--Description-->
                                     <p class="card-text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur adipisci sed velit.
@@ -562,7 +533,7 @@
 
                                     <!--Card footer-->
                                     <div class="card-footer">
-                                        <span class="left">129$</span>
+                                        <span class="left">5$</span>
                                         <span class="right">
                                                 <a class="" data-toggle="tooltip" data-placement="top" title="Quick Look"><i class="fa fa-eye"></i></a>
                                                 <a class="" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
@@ -584,8 +555,7 @@
 
                                 <!--Card image-->
                                 <div class="view overlay hm-white-slight">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img%20(23).jpg" class="img-fluid" alt="" />
-                                    <a>
+                                    <img th:src="@{/mdb/img/svg/3.png}" class="img-fluid" alt="" />                                    <a>
                                         <div class="mask waves-light"></div>
                                     </a>
                                 </div>
@@ -593,9 +563,7 @@
 
                                 <!--Card content-->
                                 <div class="card-block text-center">
-                                    <!--Category & Title-->
-                                    <h5>Shoes</h5>
-                                    <h4 class="card-title"><strong><a href="">Sport shoes</a></strong></h4>
+                                    <h4 class="card-title"><strong><a href="">Yummy so yummy</a></strong></h4>
 
                                     <!--Description-->
                                     <p class="card-text">Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates.
@@ -625,8 +593,7 @@
 
                                 <!--Card image-->
                                 <div class="view overlay hm-white-slight">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img%20(15).jpg" class="img-fluid" alt="" />
-                                    <a>
+                                    <img th:src="@{/mdb/img/svg/2.jpg}" class="img-fluid" alt="" />                                    <a>
                                         <div class="mask waves-light"></div>
                                     </a>
                                 </div>
@@ -634,9 +601,7 @@
 
                                 <!--Card content-->
                                 <div class="card-block text-center">
-                                    <!--Category & Title-->
-                                    <h5>Shoes</h5>
-                                    <h4 class="card-title"><strong><a href="">Converse sneakers</a></strong></h4>
+                                    <h4 class="card-title"><strong><a href="">Also yummy</a></strong></h4>
 
                                     <!--Description-->
                                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing minima veniam elit. Nam incidunt eius est voluptatibus.

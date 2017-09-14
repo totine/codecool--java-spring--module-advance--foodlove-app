@@ -12,12 +12,18 @@ main .card {
     }
 }
 
+@media (min-width: 768px) {
+    .panel {
+        padding-left: 0;
+    }
+}
+
 .navbar {
-    background-color: rgba(43, 43, 43, 0.9);
+    background-color: #2d201d;
 }
 
 footer.page-footer {
-    background-color: rgba(43, 43, 43, 0.9);;
+    background-color: #2d201d;
     margin-top: 2rem;
 }
 .navbar .btn-group .dropdown-menu a:hover {
@@ -47,4 +53,8 @@ footer.page-footer {
 
 .custom-btn-fl {
     margin-left: 2rem;
+}
+
+.product-name {
+    margin-top: 0.6rem;
 }
