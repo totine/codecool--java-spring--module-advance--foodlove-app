@@ -106,12 +106,13 @@
                                     <a th:href="${'/restaurators/'+restaurant.restaurator.id+'/restaurants/' + restaurant.id}">
                                         <div class="card">
                                             <div class="card-header card-chart" data-background-color="green">
-                                                <div class="ct-chart"><img th:src="${restaurant.imgUrl}"/></div>
+                                                <div class="ct-chart">
+                                                    <img th:src="${restaurant.imgUrl}"/>
+                                                </div>
                                             </div>
                                             <div class="card-content">
                                                 <h4 class="title" th:text="${restaurant.name}">Restaurant name</h4>
-                                                <p class="category"><span class="text-success"><i
-                                                        class="fa"></i> 3  </span>
+                                                <p class="category"><span class="text-success"><i class="fa"></i> 3  </span>
                                                     active promotions</p>
                                             </div>
                                             <div class="card-footer">
