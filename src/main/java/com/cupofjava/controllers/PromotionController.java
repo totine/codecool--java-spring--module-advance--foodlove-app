@@ -1,6 +1,5 @@
 package com.cupofjava.controllers;
 
-import com.cupofjava.domain.Product;
 import com.cupofjava.domain.Promotion;
 import com.cupofjava.services.PromotionService;
 import com.cupofjava.services.RestaurantService;
