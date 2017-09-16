@@ -8,7 +8,6 @@ public class ProductFeature {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private boolean isVegetarian;
     private boolean isRestaurantBox;
     private boolean isShopProduct;
     @OneToOne(mappedBy = "productFeature")
@@ -20,14 +19,6 @@ public class ProductFeature {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public boolean getIsVegetarian() {
-        return isVegetarian;
-    }
-
-    public void setIsVegetarian(boolean vegetarian) {
-        isVegetarian = vegetarian;
     }
 
     public boolean getIsRestaurantBox() {
@@ -57,7 +48,6 @@ public class ProductFeature {
     @Override
     public String toString() {
         return "ProductFeature{" +
-                "isVegetarian=" + isVegetarian +
                 ", isRestaurantBox=" + isRestaurantBox +
                 ", isShopProduct=" + isShopProduct +
                 '}';
