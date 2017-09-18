@@ -14,6 +14,7 @@ public class Restaurator {
     private String name;
     private String imgUrl;
     @OneToMany(mappedBy = "restaurator")
+    @OrderBy("id")
     private Set<Restaurant> restaurants = new HashSet<>();
 
     public Restaurator(String name, Set<Restaurant> restaurants) {
