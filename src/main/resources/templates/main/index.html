@@ -27,47 +27,9 @@
 </head>
 
 <body>
-
-<header>
-    <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-inverse navbar-dark navbar-fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><img th:src="@{/mdb/img/logo/foodlove-02.svg}" height="150"/></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Partners</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item btn-group">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">Dropdown
-                        </a>
-                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                </ul>
-                <div>
-                    <!--Blue-grey-->
-                    <a href="/restaurators/create" class="btn btn-brown btn-lg">Space for restaurants</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!--/.Navbar-->
-</header>
+<div>
+    <div th:replace="main/navbar :: navbar"></div>
+</div>
 
 <main>
     <!--Main layout-->
@@ -359,103 +321,12 @@
     </div>
 
     <!--/.Main layout-->
+
+    <div>
+        <div th:replace="main/footer :: copy"></div>
+    </div>
 </main>
 
-<!--Footer-->
-<footer class="page-footer center-on-small-only">
-    <!--Footer links-->
-    <div class="container-fluid">
-        <div class="row">
-            <!--First column-->
-            <div class="col-lg-3 col-md-6 ml-auto">
-                <h5 class="title font-bold mt-3 mb-4">Idea</h5>
-                <p>FoodLove tackles food waste in Cracow.</p>
-                <p>Every day many restaurants, coffeeshops, shops throwing away the dishes they can't sell the next day.
-                    With this app we can prevent wasting this food - few hours before the restaurants or shops are
-                    closing
-                    they can sell this food at discount price to take out.
-                    With this app restaurants, coffeeshops and food shops owners can offer unsold perishable food
-                    to customers at discount prices. Every customer will be able to find interesting
-                    food to lower prices, book it and it will be not wasted.</p>
-
-            </div>
-            <!--/.First column-->
-            <hr class="w-100 clearfix d-sm-none"/>
-            <!--Second column-->
-            <div class="col-lg-2 col-md-6 ml-auto">
-                <h5 class="title font-bold mt-3 mb-4">Most popular places</h5>
-                <ul>
-                    <li>
-                        <a href="#!">Karma</a>
-                    </li>
-                    <li>
-                        <a href="#!">Ka Udon bar</a>
-                    </li>
-                    <li>
-                        <a href="#!">Hindus</a>
-                    </li>
-                    <li>
-                        <a href="#!">Cupcake Corner</a>
-                    </li>
-                </ul>
-            </div>
-            <!--/.Second column-->
-            <hr class="w-100 clearfix d-sm-none"/>
-            <!--Third column-->
-            <div class="col-lg-2 col-md-6 ml-auto">
-                <h5 class="title font-bold mt-3 mb-4">Popular offers</h5>
-                <ul>
-                    <li>
-                        <a href="#!">Butter chicken curry @Hindus</a>
-                    </li>
-                    <li>
-                        <a href="#!">Red Velvet cupcake @Cupcake Corner</a>
-                    </li>
-                    <li>
-                        <a href="#!">Cheesecake @DeRevolutionbus</a>
-                    </li>
-                    <li>
-                        <a href="#!">Vegan sandwich @Coffeece</a>
-                    </li>
-                </ul>
-            </div>
-            <!--/.Third column-->
-            <hr class="w-100 clearfix d-sm-none"/>
-            <!--Fourth column-->
-            <div class="col-lg-2 col-md-6 ml-auto">
-                <h5 class="title font-bold mt-3 mb-4">Find us</h5>
-                <ul>
-                    <li><a class="btn-floating btn-small btn-fb" href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
-                    <li><a class="btn-floating btn-small btn-yt"><i class="fa fa-youtube"></i></a></li>
-                    <li><a class="btn-floating btn-small btn-ins" href="http://instagram.com/ika_grabon"><i class="fa fa-instagram"></i></a></li>
-                    <li><a class="btn-floating btn-small btn-gplus"><i class="fa fa-google-plus"></i></a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-2 col-md-6 ml-auto">
-                <h5 class="title font-bold mt-3 mb-4">Need help?</h5>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Policy</a></li>
-                </ul>
-            </div>
-            <!--/.Fourth column-->
-        </div>
-    </div>
-
-    <!--/.Footer links-->
-    <hr/>
-    <!--Copyright-->
-    <div class="footer-copyright">
-        <div class="containter-fluid">
-            © 2017 Copyright CupOfJava
-        </div>
-    </div>
-
-    <!--/.Copyright-->
-</footer>
-<!--/.Footer-->
 
 <!-- SCRIPTS -->
 
