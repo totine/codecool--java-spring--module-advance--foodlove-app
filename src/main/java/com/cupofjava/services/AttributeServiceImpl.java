@@ -20,9 +20,9 @@ public class AttributeServiceImpl implements AttributeService {
 
     @Override
     public List<Attribute> listAll() {
-        List<Attribute> restaurators = new ArrayList<>();
-        attributeRepositry.findAll().forEach(restaurators::add); //fun with Java 8
-        return restaurators;
+        List<Attribute> attributes = new ArrayList<>();
+        attributeRepositry.findAll().forEach(attributes::add); //fun with Java 8
+        return attributes;
     }
 
     @Override
