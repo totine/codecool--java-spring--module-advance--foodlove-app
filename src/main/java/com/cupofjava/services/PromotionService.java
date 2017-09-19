@@ -1,14 +1,11 @@
 package com.cupofjava.services;
 
-import com.cupofjava.domain.Product;
 import com.cupofjava.domain.Promotion;
-import com.cupofjava.domain.Restaurant;
+
 
 import java.util.List;
 
-/**
- * Created by oskar on 03.09.17.
- */
+
 public interface PromotionService {
 
     List<Promotion> listAll();

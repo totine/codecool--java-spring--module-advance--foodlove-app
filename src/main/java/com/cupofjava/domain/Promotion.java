@@ -1,10 +1,10 @@
 package com.cupofjava.domain;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Entity
 public class Promotion {
@@ -15,20 +15,17 @@ public class Promotion {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    @Future
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateFrom;
-    @Future
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateTo;
-    @DecimalMax("100.0") @DecimalMin("0.0")
+    private LocalDateTime dateFrom;
+    private LocalDateTime dateTo;
+    @DecimalMax("100.0")
+    @DecimalMin("0.0")
     private double discount;
     private BigDecimal promotionalPrice;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    public Promotion(Date dateFrom, Date dateTo, double discount) {
+    public Promotion(LocalDateTime dateFrom, LocalDateTime dateTo, double discount) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         this.discount = discount;
@@ -60,20 +57,20 @@ public class Promotion {
         this.product = product;
     }
 
-    public Date getDateFrom() {
+    public LocalDateTime getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
+    public void setDateFrom(String dateFrom) {
+        this.dateFrom = LocalDateTime.parse(dateFrom);
     }
 
-    public Date getDateTo() {
+    public LocalDateTime getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
+    public void setDateTo(String dateTo) {
+        this.dateTo = LocalDateTime.parse(dateTo);
     }
 
     public double getDiscount() {

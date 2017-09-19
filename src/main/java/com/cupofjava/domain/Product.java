@@ -11,6 +11,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
     private String description;
     private BigDecimal price;
     private String imageUrl;
@@ -23,6 +24,28 @@ public class Product {
     @OneToMany
     @JoinColumn(name = "promotion_id")
     private Set<Promotion> promotions;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "product_attribute",
+            joinColumns = { @JoinColumn(name = "id")},
+            inverseJoinColumns = { @JoinColumn(name = "attribute_id")})
+    private Set<Attribute> attributes;
+
+    public Set<Attribute> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Set<Attribute> attributes) {
+        this.attributes = attributes;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

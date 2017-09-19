@@ -89,28 +89,32 @@
                             </div>
                             <div class="card-content table-responsive">
                                 <form action="#" th:action="${'/restaurators/'+ restaurant.restaurator.id +'/restaurants/'+restaurant.id+'/promotions/'}" th:object="${promotionForm}" method="post">
-                                    <!--<p>Id: <input type="hidden" th:field="*{id}" /></p>-->
                                     <div class="form-group">
                                         <select th:field="*{product}"  id="dropOperator">
                                             <option value="0"> Choose product </option>
-                                            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.description}"></option>
+                                            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}"></option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <div class="md-form">
-                                            <input placeholder="Selected date" type="date" id="date-picker-example" th:field="*{dateFrom}" class="form-control datepicker" />
+                                            <input placeholder="Selected date" type="datetime-local" id="date-picker-example" th:field="*{dateFrom}" class="form-control datepicker" />
                                             <label for="date-picker-example">Date From:</label>
                                         </div>
                                         <div class="md-form">
-                                            <input placeholder="Selected date" type="date" id="date-picker-example" th:field="*{dateTo}" class="form-control datepicker" />
+                                            <input placeholder="Selected date" type="datetime-local" id="date-picker-example" th:field="*{dateTo}" class="form-control datepicker" />
                                             <label for="date-picker-example">Date To:</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                    <label>discount:</label> <input type="number" th:field="*{discount}" />
-                                        <label>promotionalPrice:</label> <input type="number" th:field="*{promotionalPrice}" />
+                                        <label>discount:</label>
+                                        <input type="number" th:field="*{discount}" />
+                                        <label>promotionalPrice:</label>
+                                        <input type="number" th:field="*{promotionalPrice}" />
                                     </div>
-                                        <div><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></div>
+                                        <div>
+                                            <input type="submit" value="Submit" />
+                                            <input type="reset" value="Reset" />
+                                        </div>
                                 </form>
                             </div>
                         </div>
