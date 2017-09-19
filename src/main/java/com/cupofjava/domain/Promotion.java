@@ -19,10 +19,10 @@ public class Promotion {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
-//    private LocalDateTime dateFrom;
-//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
-//    private LocalDateTime dateTo;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
+    private LocalDateTime dateFrom;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
+    private LocalDateTime dateTo;
     @DecimalMax("100.0")
     @DecimalMin("0.0")
     private double discount;
@@ -32,9 +32,9 @@ public class Promotion {
     private Restaurant restaurant;
     private Boolean isActive = false;
 
-    public Promotion(double discount) {
-//        this.dateFrom = dateFrom;
-//        this.dateTo = dateTo;
+    public Promotion(LocalDateTime dateFrom, LocalDateTime dateTo, double discount) {
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
         this.discount = discount;
         this.promotionalPrice = CountPromotionalPrice(discount, product.getPrice());
     }
@@ -72,21 +72,21 @@ public class Promotion {
         this.product = product;
     }
 
-//    public LocalDateTime getDateFrom() {
-//        return dateFrom;
-//    }
-//
-//    public void setDateFrom(String dateFrom) {
-//        this.dateFrom = LocalDateTime.parse(dateFrom);
-//    }
-//
-//    public LocalDateTime getDateTo() {
-//        return dateTo;
-//    }
-//
-//    public void setDateTo(String dateTo) {
-//        this.dateTo = LocalDateTime.parse(dateTo);
-//    }
+    public String getDateFrom() {
+        return this.dateFrom == null ? "" : dateFrom.toString();
+    }
+
+    public void setDateFrom(String dateFrom) {
+        this.dateFrom = LocalDateTime.parse(dateFrom);
+    }
+
+    public String getDateTo() {
+        return this.dateTo == null ? "" : dateTo.toString();
+    }
+
+    public void setDateTo(String dateTo) {
+        this.dateTo = LocalDateTime.parse(dateTo);
+    }
 
     public double getDiscount() {
         return discount;
@@ -111,5 +111,6 @@ public class Promotion {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
+
 }
 
