@@ -19,11 +19,67 @@
     <link th:href="@{/mdb/css/mdb.min.css}" rel="stylesheet"/>
 
     <link th:href="@{/mdb/css/style.css}" type="text/css" rel="stylesheet"/>
+
+    <!-- Template styles -->
+    <!--<style rel="stylesheet">-->
+    <!--</style>-->
+
 </head>
 
 <body>
+<div>
+    <div th:replace="main/navbar :: navbar"></div>
+</div>
+<div class="containter">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="h1-responsive">
+                <small class="text-muted">OMG</small>
+                <p>You're lost</p>
 
-<h1>Error 404</h1>
+                <!--<div class="view overlay hm-white-slight">-->
+                    <!--<img th:src="@{/mdb/img/svg/missing_missy3.jpg}" class="img-fluid" alt="" />-->
+                    <!--<a>-->
+                        <!--<div class="mask waves-light"></div>-->
+                    <!--</a>-->
+                <!--</div>-->
+            </h1>
+        </div>
+    </div>
+
+
+</div>
+
+                <div class="hgroup">
+                    <h1>Something Just Went Wrong !</h1>
+                    <h2>404 Error</h2>
+                </div>
+                <p>For Some Reason The Page You Requested Could Not Be Found On Our Server</p>
+                <p>Go <a href="javascript:history.go(-1)">Back</a> or <a href="/">Home</a></p>
+
+<div>
+    <div th:replace="main/footer :: copy"></div>
+</div>
+
+
+<!-- SCRIPTS -->
+
+<!-- JQuery -->
+<script type="text/javascript" th:src="@{/mdb/js/jquery-3.1.1.min.js}"></script>
+
+<!-- Bootstrap dropdown -->
+<script type="text/javascript" th:src="@{/mdb/js/popper.min.js}"></script>
+
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" th:src="@{/mdb/js/bootstrap.min.js}"></script>
+
+<!-- MDB core JavaScript -->
+<script type="text/javascript" th:src="@{/mdb/js/mdb.min.js}"></script>
+
+<script>
+    new WOW().init();
+</script>
 
 </body>
+
 </html>

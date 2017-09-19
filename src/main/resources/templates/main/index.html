@@ -41,6 +41,16 @@
                 <h1 class="h1-responsive">
                     <small class="text-muted">Love food, hate waste! Choose your meal today.</small>
                 </h1>
+                <h1>Products test</h1>
+                <tr th:each="promotion : ${promotions}">
+                    <!--<td th:text="${promotion.product.name}"></td>-->
+                    <td th:text="${promotion.product.description}"></td>
+                    <!--<td th:text="${promotion.getAll()}"></td>-->
+                    <td></td></tr>
+
+
+                <!--<div th:each="products:${product}"></div>-->
+                <!--<h3 th:text="${product.getName()}"></h3>-->
             </div>
         </div>
         <!--/.Page heading-->
