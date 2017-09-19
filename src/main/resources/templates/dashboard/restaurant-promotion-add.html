@@ -88,7 +88,9 @@
                                 <h4 class="title">Add or edit promotion</h4>
                             </div>
                             <div class="card-content table-responsive">
-                                <form action="#" th:action="${'/restaurators/'+ restaurant.restaurator.id +'/restaurants/'+restaurant.id+'/promotions/'}" th:object="${promotionForm}" method="post">
+                                <form th:action="${'/restaurators/'+ restaurant.restaurator.id +'/restaurants/'+restaurant.id+'/promotions/'}"
+                                      th:object="${promotion}" method="post">
+                                    <input type="hidden" th:field="*{id}"/>
                                     <div class="form-group">
                                         <select th:field="*{product}"  id="dropOperator">
                                             <option value="0"> Choose product </option>
@@ -97,19 +99,27 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="md-form">
-                                            <input placeholder="Selected date" type="datetime-local" id="date-picker-example" th:field="*{dateFrom}" class="form-control datepicker" />
-                                            <label for="date-picker-example">Date From:</label>
+                                            <input type="datetime-local" id="date-from"
+                                                   th:field="*{dateFrom}"/>
+                                            <label for="date-from">Date From:</label>
                                         </div>
                                         <div class="md-form">
-                                            <input placeholder="Selected date" type="datetime-local" id="date-picker-example" th:field="*{dateTo}" class="form-control datepicker" />
-                                            <label for="date-picker-example">Date To:</label>
+                                            <input type="datetime-local" id="date-to"
+                                                   th:field="*{dateTo}"/>
+                                            <label for="date-to">Date To:</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>discount:</label>
+                                        <label>Discount:</label>
                                         <input type="number" th:field="*{discount}" />
                                         <label>promotionalPrice:</label>
                                         <input type="number" th:field="*{promotionalPrice}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Is active:</label>
+                                        <input th:field="*{isActive}" type="checkbox" name="is-active"
+                                               th:value="is-active"
+                                               th:checked="${promotion.isActive ? true : false}"/>
                                     </div>
                                         <div>
                                             <input type="submit" value="Submit" />

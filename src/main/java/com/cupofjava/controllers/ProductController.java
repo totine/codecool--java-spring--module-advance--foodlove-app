@@ -1,5 +1,6 @@
 package com.cupofjava.controllers;
 
+import com.cupofjava.domain.Attribute;
 import com.cupofjava.domain.Product;
 import com.cupofjava.domain.ProductFeature;
 import com.cupofjava.services.AttributeService;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Controller
@@ -57,6 +61,8 @@ public class ProductController {
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("productForm", product);
         model.addAttribute("productFeatureForm", product.getProductFeature());
+        model.addAttribute("attributes", attributeService.listAll());
+        model.addAttribute("productAttributes", product.getAttributes());
         return "dashboard/restaurant-product-add";
     }
 
@@ -66,21 +72,21 @@ public class ProductController {
         model.addAttribute("productForm", new Product());
         model.addAttribute("productFeatureForm", new ProductFeature());
         model.addAttribute("attributes", attributeService.listAll());
+        model.addAttribute("productAttributes", new ArrayList<Attribute>());
         return "dashboard/restaurant-product-add";
     }
 
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/", method = RequestMethod.POST)
     public String saveOrUpdateProduct(@Valid Product product, ProductFeature productFeature, BindingResult bindingResult,
                                       @PathVariable(name = "restaurant_id") String restaurant_id,
-                                      @RequestParam("selected_attribute_id") String selected_attribute_id){
+                                      @RequestParam(value = "attributes", required = false) Set<Attribute> selectedAttributes){
         if(bindingResult.hasErrors()){
             return "dashboard/restaurant-product-add";
         }
-        System.out.println("\n\n");
-        System.out.println(selected_attribute_id);
-        System.out.println("\n\n");
-
-        productService.saveProductData(product, productFeature, Long.valueOf(restaurant_id));
+        if (selectedAttributes == null) {
+            selectedAttributes = new HashSet<>();
+        }
+        productService.saveProductData(product, productFeature, Long.valueOf(restaurant_id), selectedAttributes);
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/" + product.getId();
     }
 

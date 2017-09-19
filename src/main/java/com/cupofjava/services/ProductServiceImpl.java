@@ -1,5 +1,6 @@
 package com.cupofjava.services;
 
+import com.cupofjava.domain.Attribute;
 import com.cupofjava.domain.Product;
 import com.cupofjava.domain.ProductFeature;
 import com.cupofjava.domain.Restaurant;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -50,8 +52,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void saveProductData(Product product, ProductFeature productFeature, Long restaurant_id) {
+    public void saveProductData(Product product, ProductFeature productFeature, Long restaurant_id,
+                                Set<Attribute> selectedAttributes) {
         ProductFeature savedProductFeature = productFeatureService.saveOrUpdateProductFeature(productFeature);
+        product.setAttributes(selectedAttributes);
         Product savedProduct = this.saveOrUpdate(product);
         savedProduct.setProductFeature(savedProductFeature);
         savedProduct.setRestaurant(restaurantService.getById(restaurant_id));
