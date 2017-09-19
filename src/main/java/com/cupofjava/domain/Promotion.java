@@ -1,8 +1,12 @@
 package com.cupofjava.domain;
 
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
+
 import java.time.LocalDateTime;
 
 
@@ -15,8 +19,10 @@ public class Promotion {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    private LocalDateTime dateFrom;
-    private LocalDateTime dateTo;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
+//    private LocalDateTime dateFrom;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
+//    private LocalDateTime dateTo;
     @DecimalMax("100.0")
     @DecimalMin("0.0")
     private double discount;
@@ -24,10 +30,11 @@ public class Promotion {
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
+    private Boolean isActive = false;
 
-    public Promotion(LocalDateTime dateFrom, LocalDateTime dateTo, double discount) {
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
+    public Promotion(double discount) {
+//        this.dateFrom = dateFrom;
+//        this.dateTo = dateTo;
         this.discount = discount;
         this.promotionalPrice = CountPromotionalPrice(discount, product.getPrice());
     }
@@ -39,6 +46,14 @@ public class Promotion {
     private static BigDecimal CountPromotionalPrice(double discount, BigDecimal price){
          BigDecimal promotionalPrice  = price.multiply(new BigDecimal(discount));
          return promotionalPrice;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean active) {
+        isActive = active;
     }
 
     public Long getId() {
@@ -57,21 +72,21 @@ public class Promotion {
         this.product = product;
     }
 
-    public LocalDateTime getDateFrom() {
-        return dateFrom;
-    }
-
-    public void setDateFrom(String dateFrom) {
-        this.dateFrom = LocalDateTime.parse(dateFrom);
-    }
-
-    public LocalDateTime getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(String dateTo) {
-        this.dateTo = LocalDateTime.parse(dateTo);
-    }
+//    public LocalDateTime getDateFrom() {
+//        return dateFrom;
+//    }
+//
+//    public void setDateFrom(String dateFrom) {
+//        this.dateFrom = LocalDateTime.parse(dateFrom);
+//    }
+//
+//    public LocalDateTime getDateTo() {
+//        return dateTo;
+//    }
+//
+//    public void setDateTo(String dateTo) {
+//        this.dateTo = LocalDateTime.parse(dateTo);
+//    }
 
     public double getDiscount() {
         return discount;
