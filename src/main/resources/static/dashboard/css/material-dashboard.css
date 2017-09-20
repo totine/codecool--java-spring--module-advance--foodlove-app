@@ -526,6 +526,7 @@ h2.title {
 }
 .sidebar .logo,
 .off-canvas-sidebar .logo {
+  background-color: #2d201d;
   position: relative;
   padding: 15px 15px;
   z-index: 4;
