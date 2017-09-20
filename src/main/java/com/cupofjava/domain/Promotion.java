@@ -1,10 +1,14 @@
 package com.cupofjava.domain;
+
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.util.Date;
+
+import java.time.LocalDateTime;
+
 
 @Entity
 public class Promotion {
@@ -15,20 +19,20 @@ public class Promotion {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    @Future
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateFrom;
-    @Future
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateTo;
-    @DecimalMax("100.0") @DecimalMin("0.0")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
+    private LocalDateTime dateFrom;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
+    private LocalDateTime dateTo;
+    @DecimalMax("100.0")
+    @DecimalMin("0.0")
     private double discount;
     private BigDecimal promotionalPrice;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
+    private Boolean isActive = false;
 
-    public Promotion(Date dateFrom, Date dateTo, double discount) {
+    public Promotion(LocalDateTime dateFrom, LocalDateTime dateTo, double discount) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         this.discount = discount;
@@ -42,6 +46,14 @@ public class Promotion {
     private static BigDecimal CountPromotionalPrice(double discount, BigDecimal price){
          BigDecimal promotionalPrice  = price.multiply(new BigDecimal(discount));
          return promotionalPrice;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean active) {
+        isActive = active;
     }
 
     public Long getId() {
@@ -60,20 +72,20 @@ public class Promotion {
         this.product = product;
     }
 
-    public Date getDateFrom() {
-        return dateFrom;
+    public String getDateFrom() {
+        return this.dateFrom == null ? "" : dateFrom.toString();
     }
 
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
+    public void setDateFrom(String dateFrom) {
+        this.dateFrom = LocalDateTime.parse(dateFrom);
     }
 
-    public Date getDateTo() {
-        return dateTo;
+    public String getDateTo() {
+        return this.dateTo == null ? "" : dateTo.toString();
     }
 
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
+    public void setDateTo(String dateTo) {
+        this.dateTo = LocalDateTime.parse(dateTo);
     }
 
     public double getDiscount() {
@@ -99,5 +111,6 @@ public class Promotion {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
+
 }
 

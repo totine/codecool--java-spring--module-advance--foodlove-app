@@ -1,8 +1,6 @@
 package com.cupofjava.controllers;
 
-import com.cupofjava.domain.Product;
 import com.cupofjava.domain.Promotion;
-import com.cupofjava.services.ImageStorageService;
 import com.cupofjava.services.PromotionService;
 import com.cupofjava.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,6 @@ public class PromotionController {
 
     private RestaurantService restaurantService;
     private PromotionService promotionService;
-
 
     @Autowired
     public PromotionController(RestaurantService restaurantService, PromotionService promotionService) {
@@ -47,7 +44,7 @@ public class PromotionController {
                                 Model model){
         Promotion promotion = promotionService.getById(Long.valueOf(promotion_id));
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
-        model.addAttribute("promotionForm", promotion);
+        model.addAttribute("promotion", promotion);
         model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
         return "dashboard/restaurant-promotion-add";
     }
@@ -93,11 +90,4 @@ public class PromotionController {
         promotionService.delete(Long.valueOf(id));
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/";
     }
-//    @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/edit/{id}")
-//    public String edit(@PathVariable(name = "id") String id, @PathVariable(name = "restaurant_id") String restaurant_id, Model model){
-//        model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
-//        model.addAttribute("promotionForm", promotionService.getById(Long.valueOf(id)));
-//        return "dashboard/restaurant-promotion-add";
-//
-//    }
 }

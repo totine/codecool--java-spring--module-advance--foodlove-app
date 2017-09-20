@@ -48,12 +48,7 @@ public class PromotionServiceImpl implements PromotionService {
 
     @Override
     public void savePromotionData(Promotion promotion, Long restaurant_id) {
-        Long productId =  promotion.getProduct().getId();
-        promotion.setProduct(productService.getById(productId));
-        this.saveOrUpdate(promotion);
         promotion.setRestaurant(restaurantService.getById(restaurant_id));
-        restaurantService.getById(restaurant_id).getPromotions().add(promotion);
         this.saveOrUpdate(promotion);
-        restaurantService.saveOrUpdate(restaurantService.getById(restaurant_id));
     }
 }

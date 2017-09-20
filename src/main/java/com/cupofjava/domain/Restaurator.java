@@ -14,6 +14,7 @@ public class Restaurator {
     private String name;
     private String imgUrl;
     @OneToMany(mappedBy = "restaurator")
+    @OrderBy("id")
     private Set<Restaurant> restaurants = new HashSet<>();
 
     public Restaurator(String name, Set<Restaurant> restaurants) {
@@ -49,8 +50,6 @@ public class Restaurator {
         this.imgUrl = imgUrl;
     }
 
-    @JoinColumn
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     public Set<Restaurant> getRestaurants() {
         return restaurants;
     }
