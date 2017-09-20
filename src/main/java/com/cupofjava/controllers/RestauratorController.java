@@ -124,8 +124,10 @@ public class RestauratorController{
     @RequestMapping("/restaurators/{id}")
     public String restauratorPanel(@PathVariable String id, Model model){
         List<Restaurant> restaurantList = new ArrayList<>();
-        restaurantList.addAll(restauratorService.getById(Long.valueOf(id)).getRestaurants());
-        model.addAttribute("restaurantList", restaurantList);
-        return "/dashboard/base";
+        Restaurator restaurator = restauratorService.getById(Long.valueOf(id));
+       // restaurantList.addAll(restaurator.getRestaurants());
+   //     model.addAttribute("restaurantList", restaurantList);
+        model.addAttribute("restaurator", restaurator);
+        return "dashboard/restaurator";
     }
 }
