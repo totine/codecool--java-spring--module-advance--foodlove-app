@@ -1,5 +1,6 @@
 package com.cupofjava.controllers;
 
+import com.cupofjava.domain.Attribute;
 import com.cupofjava.domain.Product;
 import com.cupofjava.domain.ProductFeature;
 import com.cupofjava.services.ImageStorageService;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.File;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -80,14 +82,16 @@ public class ProductController {
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/", method = RequestMethod.POST)
     public String saveOrUpdateProduct(@Valid Product product, ProductFeature productFeature, BindingResult bindingResult,
                                       @PathVariable(name = "restaurant_id") String restaurant_id,
-                                      @RequestParam("file") MultipartFile file){
+                                      @RequestParam(value = "attributes", required = false) Set<Attribute> selectedAttributes,
+                                      @RequestParam("file") MultipartFile file
+    ){
         if(bindingResult.hasErrors()){
             return "dashboard/restaurant-product-add";
         }
         imageStorageService.store(file);
 
         product.setImageUrl(file.getOriginalFilename());
-        productService.saveProductData(product, productFeature, Long.valueOf(restaurant_id));
+        productService.saveProductData(product, productFeature, Long.valueOf(restaurant_id), selectedAttributes);
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/" + product.getId();
     }
 
