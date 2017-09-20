@@ -17,8 +17,10 @@ public class Restaurant {
     private Restaurator restaurator;
     private String imgUrl;
     @OneToMany(mappedBy = "restaurant", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OrderBy("id")
     private Set<Product> products;
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    @OrderBy("id")
     private Set<Promotion> promotions;
 
     public Restaurant(String name, String address) {
