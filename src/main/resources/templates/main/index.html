@@ -44,7 +44,10 @@
                 <h1>Products test</h1>
                 <tr th:each="promotion : ${promotions}">
                     <!--<td th:text="${promotion.product.name}"></td>-->
+                    <td th:text="${promotion.product.name}"></td>
                     <td th:text="${promotion.product.description}"></td>
+                    <td th:text="${promotion.product.price}"></td>
+                    <td th:text="${promotion.discount}"></td>
                     <!--<td th:text="${promotion.getAll()}"></td>-->
                     <td></td></tr>
 
@@ -69,52 +72,52 @@
             </ol>
             <!--/.Indicators-->
             <!--Slides-->
-            <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active img-fluid">
+            <div class="carousel-inner" role="listbox" th:each="promotion, iter : ${promotions}">
+                <div th:class="${iter.index==0 ? 'carousel-item active img-fluid' : 'carousel-item img-fluid'}">
                     <div class="view hm-black-slight">
                         <img class="d-block w-100 img-fluid" th:src="@{/mdb/img/svg/1.jpg}" alt="First slide"/>
                         <div class="mask"></div>
                     </div>
                     <div class="carousel-caption">
-                        <h3 class="h3-responsive">Homemade chocolate cake</h3>
-                        <p>Cafe Chocolate, Wiślna Cracow</p>
-                        <h3 class="price"><span class="badge red darken-2">50% discount</span></h3>
+                        <h3 class="h3-responsive" th:text="${promotion.product.name}"></h3>
+                        <p th:text="${promotion.product.restaurant.name}"></p>
+                        <h3 class="price"><span class="badge red darken-2" th:text="${promotion.promotionalPrice}"></span></h3>
                         <!--</span><span class="badge grey darken-2">07.09.2017 10.00-12.00</span></h3>-->
                     </div>
                 </div>
-                <div class="carousel-item img-fluid">
-                    <!--Mask color-->
-                    <div class="view hm-black-slight">
-                        <img class="d-block w-100 img-fluid" th:src="@{/mdb/img/svg/2.jpg}" alt="Second slide"/>
-                        <div class="mask"></div>
-                    </div>
-                    <div class="carousel-caption">
-                        <h3 class="h3-responsive">Cheesecake with pomegranate</h3>
-                        <p>Bal, Ślusarska Cracow</p>
-                    </div>
-                </div>
-                <div class="carousel-item img-fluid">
-                    <!--Mask color-->
-                    <div class="view hm-black-slight">
-                        <img class="d-block w-100 img-fluid" th:src="@{/mdb/img/svg/3.png}" alt="Third slide"/>
-                        <div class="mask"></div>
-                    </div>
-                    <div class="carousel-caption">
-                        <h3 class="h3-responsive">Vegan udon with tofu and egg</h3>
-                        <p>Ka Udon bar, Rakowicka Cracow</p>
-                    </div>
-                </div>
-                <div class="carousel-item img-fluid">
-                    <!--Mask color-->
-                    <div class="view hm-black-slight">
-                        <img class="d-block w-100 img-fluid" th:src="@{/mdb/img/svg/4.jpg}" alt="Fourth slide"/>
-                        <div class="mask"></div>
-                    </div>
-                    <div class="carousel-caption">
-                        <h3 class="h3-responsive">Butter chicken curry</h3>
-                        <p>Hindus, Lipowa Cracow</p>
-                    </div>
-                </div>
+                <!--<div class="carousel-item img-fluid">-->
+                    <!--&lt;!&ndash;Mask color&ndash;&gt;-->
+                    <!--<div class="view hm-black-slight">-->
+                        <!--<img class="d-block w-100 img-fluid" th:src="@{/mdb/img/svg/2.jpg}" alt="Second slide"/>-->
+                        <!--<div class="mask"></div>-->
+                    <!--</div>-->
+                    <!--<div class="carousel-caption">-->
+                        <!--<h3 class="h3-responsive">Cheesecake with pomegranate</h3>-->
+                        <!--<p>Bal, Ślusarska Cracow</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="carousel-item img-fluid">-->
+                    <!--&lt;!&ndash;Mask color&ndash;&gt;-->
+                    <!--<div class="view hm-black-slight">-->
+                        <!--<img class="d-block w-100 img-fluid" th:src="@{/mdb/img/svg/3.png}" alt="Third slide"/>-->
+                        <!--<div class="mask"></div>-->
+                    <!--</div>-->
+                    <!--<div class="carousel-caption">-->
+                        <!--<h3 class="h3-responsive">Vegan udon with tofu and egg</h3>-->
+                        <!--<p>Ka Udon bar, Rakowicka Cracow</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="carousel-item img-fluid">-->
+                    <!--&lt;!&ndash;Mask color&ndash;&gt;-->
+                    <!--<div class="view hm-black-slight">-->
+                        <!--<img class="d-block w-100 img-fluid" th:src="@{/mdb/img/svg/4.jpg}" alt="Fourth slide"/>-->
+                        <!--<div class="mask"></div>-->
+                    <!--</div>-->
+                    <!--<div class="carousel-caption">-->
+                        <!--<h3 class="h3-responsive">Butter chicken curry</h3>-->
+                        <!--<p>Hindus, Lipowa Cracow</p>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
             <!--/.Slides-->
             <!--Controls-->
