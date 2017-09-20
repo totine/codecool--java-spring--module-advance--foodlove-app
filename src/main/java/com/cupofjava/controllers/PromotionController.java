@@ -34,8 +34,9 @@ public class PromotionController {
         return "main/index";
     }
 
-    @RequestMapping("/promotions/{id}")
-    public String promotionDetails(){
+    @RequestMapping("/promotions/{promotion_id}")
+    public String promotionDetails(@PathVariable(name = "promotion_id") String promotion_id, Model model) {
+        model.addAttribute("promotion", promotionService.getById(Long.valueOf(promotion_id)));
         return "main/productView";
     }
 
