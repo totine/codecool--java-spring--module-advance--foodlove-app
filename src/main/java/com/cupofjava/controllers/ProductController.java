@@ -98,4 +98,12 @@ public class ProductController {
         productService.delete(Long.valueOf(product_id));
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/";
     }
+
+//    @RequestMapping("/")
+//    public String listProductsOnMain(Model model){
+//        model.addAttribute("products", productService.listAll());
+//        model.addAttribute("productsFeatures", productFeatureService.listAll());
+//        return "main/index";
+//    }
+
 }

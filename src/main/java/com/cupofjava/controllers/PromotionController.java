@@ -31,12 +31,13 @@ public class PromotionController {
     @RequestMapping("/")
     public String mainPage(Model model){
         model.addAttribute("promotions", promotionService.listAll());
-        return "MDB-Free/index";
+        return "main/index";
     }
 
-    @RequestMapping("/promotions/{id}")
-    public String promotionDetails(){
-        return "MDB-Free/productView2";
+    @RequestMapping("/promotions/{promotion_id}")
+    public String promotionDetails(@PathVariable(name = "promotion_id") String promotion_id, Model model) {
+        model.addAttribute("promotion", promotionService.getById(Long.valueOf(promotion_id)));
+        return "main/productView";
     }
 
     @RequestMapping("/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/edit/{promotion_id}")
