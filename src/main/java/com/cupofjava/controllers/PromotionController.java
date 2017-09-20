@@ -45,7 +45,7 @@ public class PromotionController {
                                 Model model){
         Promotion promotion = promotionService.getById(Long.valueOf(promotion_id));
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
-        model.addAttribute("promotionForm", promotion);
+        model.addAttribute("promotion", promotion);
         model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
         return "dashboard/restaurant-promotion-add";
     }
@@ -55,7 +55,7 @@ public class PromotionController {
     public String createPromotion(@PathVariable(name = "restaurant_id") String restaurant_id, Model model){
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
-        model.addAttribute("promotionForm", new Promotion());
+        model.addAttribute("promotion", new Promotion());
         return "dashboard/restaurant-promotion-add";
     }
 

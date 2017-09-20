@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -78,11 +79,13 @@ public class ProductController {
     @RequestMapping(value = "/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/", method = RequestMethod.POST)
     public String saveOrUpdateProduct(@Valid Product product, ProductFeature productFeature, BindingResult bindingResult,
                                       @PathVariable(name = "restaurant_id") String restaurant_id,
-                                      @RequestParam("attributes") Set<Attribute> selectedAttributes){
+                                      @RequestParam(value = "attributes", required = false) Set<Attribute> selectedAttributes){
         if(bindingResult.hasErrors()){
             return "dashboard/restaurant-product-add";
         }
-
+        if (selectedAttributes == null) {
+            selectedAttributes = new HashSet<>();
+        }
         productService.saveProductData(product, productFeature, Long.valueOf(restaurant_id), selectedAttributes);
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/products/" + product.getId();
     }
