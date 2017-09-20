@@ -113,9 +113,9 @@
                                         <p>Default price:</p>
                                         <p id="product-price"></p>
                                         <label>Discount:</label>
-                                        <input type="number" id="discount" th:field="*{discount}" onchange="promoPriceCalc()"/>
+                                        <input type="number" step="0.1" id="discount" th:field="*{discount}" onchange="promoPriceCalc()"/>
                                         <label>promotionalPrice:</label>
-                                        <input type="number" id="promo-price" th:field="*{promotionalPrice}" onchange="discountCalc()"/>
+                                        <input type="number" step="0.01" id="promo-price" th:field="*{promotionalPrice}" onchange="discountCalc()"/>
                                     </div>
                                     <div class="form-group">
                                         <label>Is active:</label>
