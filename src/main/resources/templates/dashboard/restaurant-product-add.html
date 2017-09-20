@@ -117,7 +117,6 @@
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" th:field="*{description}"
                                                    th:errorclass="has-error"/>
-
                                             <span class="help-block">
                                                <ul>
                                                    <li th:each="err : ${#fields.errors('description')}" th:text="${err}"/>
@@ -132,7 +131,6 @@
                                         <div class="col-sm-10">
                                             <input type="number" min="0" max="9999" step="0.01" class="form-control"
                                                    th:field="*{price}" th:errorclass="has-error"/>
-
                                             <span class="help-block">
                                                <ul>
                                                    <li th:each="err : ${#fields.errors('price')}" th:text="${err}"/>
@@ -141,40 +139,22 @@
                                         </div>
                                     </div>
 
-
+                                    <div class="form-group">
                                         <label class="col-sm-2 control-label">Image Url:</label>
                                         <div class="col-sm-10">
-                                            <input type="file" name = "file" class="form-control"
-                                                   />
-
-                                            <span class="help-block">
-                       <ul>
-                       </ul>
-                    </span>
+                                            <input type="file" name = "file" class="form-control"/>
+                                        </div>
                                     </div>
+
                                     <form class="form-horizontal" th:object="${productFeatureForm}"
                                           th:action="@{/templates/product}" method="post" enctype="multipart/form-data">
-                                        <div class="form-group"
-                                             th:class="${#fields.hasErrors('isVegetarian')} ? 'form-group has-error' : 'form-group'">
-                                            <label class="col-sm-2 control-label">Is vegetarian</label>
-                                            <div class="col-sm-10">
-                                                <input type="checkbox" class="form-control" th:field="*{isVegetarian}"
-                                                       th:errorclass="has-error"/>
 
-                                                <span class="help-block">
-                       <ul>
-                           <li th:each="err : ${#fields.errors('isVegetarian')}" th:text="${err}"/>
-                       </ul>
-                    </span>
-                                            </div>
-                                        </div>
                                         <div class="form-group"
                                              th:class="${#fields.hasErrors('isRestaurantBox')} ? 'form-group has-error' : 'form-group'">
                                             <label class="col-sm-2 control-label">Is restaurant box:</label>
                                             <div class="col-sm-10">
                                                 <input type="checkbox" class="form-control"
                                                        th:field="*{isRestaurantBox}" th:errorclass="has-error"/>
-
                                                 <span class="help-block">
                                                    <ul>
                                                        <li th:each="err : ${#fields.errors('isRestaurantBox')}" th:text="${err}"/>
@@ -182,13 +162,13 @@
                                                 </span>
                                             </div>
                                         </div>
+
                                         <div class="form-group"
                                              th:class="${#fields.hasErrors('isShopProduct')} ? 'form-group has-error' : 'form-group'">
                                             <label class="col-sm-2 control-label">Is shop product:</label>
                                             <div class="col-sm-10">
                                                 <input type="checkbox" class="form-control" th:field="*{isShopProduct}"
                                                        th:errorclass="has-error"/>
-
                                                 <span class="help-block">
                                                    <ul>
                                                        <li th:each="err : ${#fields.errors('isShopProduct')}" th:text="${err}"/>
