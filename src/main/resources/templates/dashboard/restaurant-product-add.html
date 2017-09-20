@@ -159,7 +159,8 @@
                                             <label class="col-sm-2 control-label">Is restaurant box:</label>
                                             <div class="col-sm-10">
                                                 <input type="checkbox" class="form-control"
-                                                       th:field="*{isRestaurantBox}" th:errorclass="has-error"/>
+                                                       th:field="*{isRestaurantBox}"
+                                                       th:errorclass="has-error"/>
 
                                                 <span class="help-block">
                                                    <ul>
@@ -172,7 +173,8 @@
                                              th:class="${#fields.hasErrors('isShopProduct')} ? 'form-group has-error' : 'form-group'">
                                             <label class="col-sm-2 control-label">Is shop product:</label>
                                             <div class="col-sm-10">
-                                                <input type="checkbox" class="form-control" th:field="*{isShopProduct}"
+                                                <input type="checkbox" class="form-control"
+                                                       th:field="*{isShopProduct}"
                                                        th:errorclass="has-error"/>
 
                                                 <span class="help-block">
