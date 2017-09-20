@@ -2,16 +2,16 @@ package com.cupofjava.controllers;
 
 import com.cupofjava.domain.Product;
 import com.cupofjava.domain.Promotion;
+import com.cupofjava.services.ImageStorageService;
 import com.cupofjava.services.PromotionService;
 import com.cupofjava.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -21,6 +21,7 @@ public class PromotionController {
 
     private RestaurantService restaurantService;
     private PromotionService promotionService;
+
 
     @Autowired
     public PromotionController(RestaurantService restaurantService, PromotionService promotionService) {
@@ -74,8 +75,7 @@ public class PromotionController {
             System.out.println(bindingResult.getModel());
             return "errors/error";
         }
-        System.out.println(promotion + "opis produktu");
-        promotionService.savePromotionData(promotion, Long.valueOf(restaurant_id));
+                promotionService.savePromotionData(promotion, Long.valueOf(restaurant_id));
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/" + promotion.getId();
 
