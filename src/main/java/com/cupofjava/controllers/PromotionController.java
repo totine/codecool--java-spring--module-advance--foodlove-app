@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -55,7 +54,7 @@ public class PromotionController {
     public String createPromotion(@PathVariable(name = "restaurant_id") String restaurant_id, Model model){
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         model.addAttribute("products", restaurantService.getById(Long.valueOf(restaurant_id)).getProducts());
-        model.addAttribute("promotion", new Promotion());
+        model.addAttribute("promotionForm", new Promotion());
         return "dashboard/restaurant-promotion-add";
     }
 
@@ -73,7 +72,7 @@ public class PromotionController {
             System.out.println(bindingResult.getModel());
             return "errors/error";
         }
-        promotionService.savePromotionData(promotion, Long.valueOf(restaurant_id));
+                promotionService.savePromotionData(promotion, Long.valueOf(restaurant_id));
         model.addAttribute("restaurant", restaurantService.getById(Long.valueOf(restaurant_id)));
         return "redirect:/restaurators/{restaurator_id}/restaurants/{restaurant_id}/promotions/" + promotion.getId();
 

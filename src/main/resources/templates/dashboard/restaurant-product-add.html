@@ -88,13 +88,14 @@
                                 <h4 class="title">Add or edit product</h4>
                             </div>
                             <div class="card-content table-responsive">
-                                <form class="form-horizontal" th:object="${productForm}"
+                                <form class="form-horizontal" th:object="${productForm}" enctype="multipart/form-data"
                                       th:action="${'/restaurators/'+ restaurant.restaurator.id +'/restaurants/'+restaurant.id+'/products/'}"
                                       method="post">
                                     <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
                                         <p th:text="#{form.hasErrors}">Error Message</p>
                                     </div>
                                     <input type="hidden" th:field="*{id}"/>
+                                    <input type="hidden" th:field="*{imageUrl}"/>
 
                                     <div class="form-group"
                                          th:class="${#fields.hasErrors('name')} ? 'form-group has-error' : 'form-group'">
@@ -116,6 +117,7 @@
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" th:field="*{description}"
                                                    th:errorclass="has-error"/>
+
                                             <span class="help-block">
                                                <ul>
                                                    <li th:each="err : ${#fields.errors('description')}" th:text="${err}"/>
@@ -139,21 +141,33 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group"
-                                         th:class="${#fields.hasErrors('imageUrl')} ? 'form-group has-error' : 'form-group'">
+
                                         <label class="col-sm-2 control-label">Image Url:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" th:field="*{imageUrl}"
-                                                   th:errorclass="has-error"/>
+                                            <input type="file" name = "file" class="form-control"
+                                                   />
 
                                             <span class="help-block">
-                                               <ul>
-                                                   <li th:each="err : ${#fields.errors('imageUrl')}" th:text="${err}"/>
-                                               </ul>
-                                            </span>
-                                        </div>
+                       <ul>
+                       </ul>
+                    </span>
                                     </div>
-                                    <form class="form-horizontal" th:object="${productFeatureForm}">
+                                    <form class="form-horizontal" th:object="${productFeatureForm}"
+                                          th:action="@{/templates/product}" method="post" enctype="multipart/form-data">
+                                        <div class="form-group"
+                                             th:class="${#fields.hasErrors('isVegetarian')} ? 'form-group has-error' : 'form-group'">
+                                            <label class="col-sm-2 control-label">Is vegetarian</label>
+                                            <div class="col-sm-10">
+                                                <input type="checkbox" class="form-control" th:field="*{isVegetarian}"
+                                                       th:errorclass="has-error"/>
+
+                                                <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('isVegetarian')}" th:text="${err}"/>
+                       </ul>
+                    </span>
+                                            </div>
+                                        </div>
                                         <div class="form-group"
                                              th:class="${#fields.hasErrors('isRestaurantBox')} ? 'form-group has-error' : 'form-group'">
                                             <label class="col-sm-2 control-label">Is restaurant box:</label>
