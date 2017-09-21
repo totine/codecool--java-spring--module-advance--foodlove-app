@@ -1811,6 +1811,14 @@ a:not([href]):not([tabindex]), a:not([href]):not([tabindex]):focus, a:not([href]
   transform-origin: center bottom;
 }
 
+.form-header {
+  color:#fff;
+  text-align:center;
+  margin-top:-50px;
+  margin-bottom:3rem;
+  padding:1rem;
+  border-radius:2px}
+
 @-webkit-keyframes flash {
   from, 50%, to {
     opacity: 1;
